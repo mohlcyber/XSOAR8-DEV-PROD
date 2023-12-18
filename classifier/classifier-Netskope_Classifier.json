@@ -1,0 +1,55 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.2.0",
+	"id": "Netskope Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "3.3.1",
+	"keyTypeMap": {
+		"Compromised Credential": "Netskope Compromised Credentials",
+		"DLP": "Netskope DLP",
+		"Legal Hold": "Netskope Legal Hold",
+		"Remediation": "Netskope Alert",
+		"Security Assessment": "Netskope Alert",
+		"anomaly": "Netskope Alert",
+		"application": "Netskope Event",
+		"audit": "Netskope Event",
+		"infrastructure": "Netskope Event",
+		"malsite": "Netskope Malicious Sites",
+		"malware": "Netskope Malware",
+		"network": "Netskope Event",
+		"page": "Netskope Event",
+		"policy": "Netskope Alert",
+		"quarantine": "Netskope Quarantine",
+		"uba": "Netskope Behavior Analytics",
+		"watchlist": "Netskope Alert"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Netskope Classifier",
+	"nameRaw": "Netskope Classifier",
+	"packID": "Netskope",
+	"packName": "Netskope",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "incident_type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
