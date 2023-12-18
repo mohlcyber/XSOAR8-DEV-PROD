@@ -1,0 +1,530 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 9ce40ff7-7126-4fde-8a61-e18451c73bbc
+inputs:
+- description: ""
+  key: symbol
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: PANW
+- description: ""
+  key: threshold
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "1.11"
+name: tzFinancePB
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3df18bf2-ea28-43ac-80c9-cb97c32fc75d
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3df18bf2-ea28-43ac-80c9-cb97c32fc75d
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      symbol:
+        simple: ${inputs.symbol}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: tz finance
+      id: 309fd54e-65ca-4a84-896d-5d7144db7911
+      iscommand: false
+      name: tzFinance
+      script: 0627bb7b-940b-4834-840c-7ba914807867
+      type: regular
+      version: -1
+    taskid: 309fd54e-65ca-4a84-896d-5d7144db7911
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 640
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: tzFinance.the_value
+          operator: greaterThan
+          right:
+            iscontext: true
+            value:
+              simple: tzFinanceTrend.last_price
+      label: good
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: tzFinance.the_value
+          operator: lessThan
+          right:
+            iscontext: true
+            value:
+              simple: tzFinanceTrend.last_price
+      label: Bad
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: tzFinance.the_value
+          operator: isEqualNumber
+          right:
+            iscontext: true
+            value:
+              simple: tzFinanceTrend.last_price
+      label: ok
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Bad:
+      - "9"
+      good:
+      - "8"
+      ok:
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 50ecc3d2-2244-4402-84d1-23ba74ed775a
+      iscommand: false
+      name: ze tov o lo tov
+      type: condition
+      version: -1
+    taskid: 50ecc3d2-2244-4402-84d1-23ba74ed775a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 1330
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      body:
+        simple: ${tzFinanceTrend.trend}
+      subject:
+        simple: Stock  ${inputs.symbol}  Value ${tzFinance.the_value} Trend ${tzFinanceTrend.trend_symbol}
+      to:
+        simple: ikatz@paloaltonetworks.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Send an email
+      id: 7f18b5d1-5c87-46f5-8d49-9e6584ce0b9e
+      iscommand: true
+      name: send report via email
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 7f18b5d1-5c87-46f5-8d49-9e6584ce0b9e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 340,
+          "y": 1960
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      tzstockprice:
+        simple: ${tzFinance.the_value}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 38860081-6073-4c39-89fc-4225204a8c8b
+      iscommand: true
+      name: put things on incident
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 38860081-6073-4c39-89fc-4225204a8c8b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 150,
+          "y": 900
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: IDDQD
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 33283127-e64a-48a1-8e05-2d2720a7dd13
+      iscommand: true
+      name: Close the incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 33283127-e64a-48a1-8e05-2d2720a7dd13
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1210,
+          "y": 2270
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2fc6821a-a509-439a-894f-3a763e43345e
+      iscommand: false
+      name: get the trend
+      script: fae813ca-e2f7-4dec-8796-0c21e5d0ba97
+      type: regular
+      version: -1
+    taskid: 2fc6821a-a509-439a-894f-3a763e43345e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -390,
+          "y": 880
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: tzFinanceTrend.trend_symbol
+      value:
+        simple: ↑
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 4ad2e54e-b572-4485-8160-e8bbf61531e2
+      iscommand: false
+      name: Set trend symbol UP ↑
+      script: Set
+      type: regular
+      version: -1
+    taskid: 4ad2e54e-b572-4485-8160-e8bbf61531e2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 1590
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: tzFinanceTrend.trend_symbol
+      value:
+        simple: ↓
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: a4e776d9-ff72-4577-8b76-76fdb37532f6
+      iscommand: false
+      name: Set trend symbol DN ↓
+      script: Set
+      type: regular
+      version: -1
+    taskid: a4e776d9-ff72-4577-8b76-76fdb37532f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 270,
+          "y": 1600
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: tzFinanceTrend.trend_symbol
+      value:
+        simple: ━
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 9002a777-2b48-48dd-8e74-2efab03235e3
+      iscommand: false
+      name: Set trend symbol EQ ━
+      script: Set
+      type: regular
+      version: -1
+    taskid: 9002a777-2b48-48dd-8e74-2efab03235e3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 1600
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: ${tzFinanceTrend.last_price}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: c4ac313a-b526-4567-88e0-f56697ec574c
+      iscommand: false
+      name: debug
+      script: Print
+      type: regular
+      version: -1
+    taskid: c4ac313a-b526-4567-88e0-f56697ec574c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 1100
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a391ec35-bb59-42e8-816c-bb7e21d01b31
+      iscommand: false
+      name: מה השעה
+      script: 6a31e070-42cd-4416-8cb2-fe4365cb6606
+      type: regular
+      version: -1
+    taskid: a391ec35-bb59-42e8-816c-bb7e21d01b31
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 210,
+          "y": 230
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: tzIsTradingHrs.is_trading_hrs_now
+          operator: isTrue
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4c326e9d-7cbf-4f7c-871f-d139bfda3982
+      iscommand: false
+      name: is trade hours
+      type: condition
+      version: -1
+    taskid: 4c326e9d-7cbf-4f7c-871f-d139bfda3982
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "2_8_good": 0.84
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2315,
+        "width": 1980,
+        "x": -390,
+        "y": 50
+      }
+    }
+  }
