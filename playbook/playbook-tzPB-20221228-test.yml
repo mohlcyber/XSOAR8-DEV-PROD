@@ -1,0 +1,57 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: b138fcaa-d808-4057-8cbb-a6b7dda4c4d7
+inputs: []
+name: tzPB-20221228-test
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bc68137d-f1e0-4100-8ee0-781bfd7018b3
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: bc68137d-f1e0-4100-8ee0-781bfd7018b3
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 65,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
