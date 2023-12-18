@@ -1,0 +1,441 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Cloud Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "Netskope Classifier",
+				"name": "Netskope Classifier"
+			},
+			{
+				"description": "",
+				"id": "Netskope Mapper",
+				"name": "Netskope Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Netskope Malware ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Breach Description",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Acknowledge",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "Netskope Cloud Confidence Level",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Quarantine Policy",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Violations",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "Netskope Quarantine Profile",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope DLP Rule",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Quarantine File ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Behavior Analytics Policy",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Quarantine Profile ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Breach Date",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Netskope Object Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Breach Score",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "Netskope Malware Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Leak ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Action",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope DLP Profile",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Breach Source",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Object",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Malware Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Access Method",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Netskope Object ID",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope DLP",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Behavior Analytics",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Compromised Credentials",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Quarantine",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Legal Hold",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Malware",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Event",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Malicious Sites",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Netskope Alert",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Gets a list of events",
+						"name": "netskope-events"
+					},
+					{
+						"description": "Gets a list of alerts",
+						"name": "netskope-alerts"
+					}
+				],
+				"description": "Cloud access security broker that enables to find, understand, and secure cloud apps. Deprecated. Use Netskope (API v1) instead.",
+				"id": "Netskope",
+				"name": "Netskope (Deprecated)"
+			},
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get alerts generated by Netskope. You may choose what alerts to receive with the alert_type parameter. You must provide start_time and end_time, or insertion_start_time and insertion_end_time. (Note that if end_time or insertion_end_time aren't provided. the date time would be set as now.) You cannot provide a combination of the options mentioned above.",
+						"name": "netskope-alert-list"
+					},
+					{
+						"description": "Get events extracted from SaaS traffic. You may choose what events to receive with the event_type parameter. You must provide start_time and end_time, or insertion_start_time and insertion_end_time. (Note that if end_time or insertion_end_time aren't provided, the date time would be set as now.) You cannot provide a combination of the options mentioned above.",
+						"name": "netskope-event-list"
+					},
+					{
+						"description": "Update the URL list with the values provided. Note that this command overrides the list.",
+						"name": "netskope-url-list-update"
+					},
+					{
+						"description": "Create a new URL list.",
+						"name": "netskope-url-list-create"
+					},
+					{
+						"description": "Get all URL lists or a specific URL list by specifying the list ID.",
+						"name": "netskope-url-lists-list"
+					},
+					{
+						"description": "Delete a URL list by the list ID.",
+						"name": "netskope-url-list-delete"
+					},
+					{
+						"description": "Get information about Netskope SCIM users. The command provides a list of users who have been imported into the Netskope tenant through SCIM integration. Users imported through other methods, such as manual CSV import or manual creation, will not be included in the returned results.",
+						"name": "netskope-client-list"
+					}
+				],
+				"description": "Netskope API v2 provides a powerful interface for managing and monitoring Netskope deployments. It enables users to retrieve alerts and events, manage URL lists, and control clients. With Netskope API v2, organizations can proactively respond to security threats, enforce web access policies, and efficiently administer their Netskope environment.",
+				"id": "netskope_api_v2",
+				"name": "Netskope (API v2)"
+			},
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get events extracted from SaaS traffic and or logs. You must provide start_time and end_time, or insertion_start_time and insertion_end_time, or timeperiod. Also, you cannot provide a combination of the options mentioned above.",
+						"name": "netskope-event-list"
+					},
+					{
+						"description": "Get alerts generated by Netskope, including policy, DLP, and watch list alerts. You must provide start_time and end_time, or insertion_start_time and insertion_end_time, or timeperiod. Also, you cannot provide a combination of the options mentioned above.",
+						"name": "netskope-alert-list"
+					},
+					{
+						"description": "List all quarantined files.",
+						"name": "netskope-quarantined-file-list"
+					},
+					{
+						"description": "Download a quarantined file.",
+						"name": "netskope-quarantined-file-get"
+					},
+					{
+						"description": "Take an action on a quarantined file.",
+						"name": "netskope-quarantined-file-update"
+					},
+					{
+						"description": "Update the URL List with the values provided. The command will override the whole list content, rather than appending the new values.",
+						"name": "netskope-url-list-update"
+					},
+					{
+						"description": "Update file hash list with the values provided. The command will override the whole list content, rather than appending the new values.",
+						"name": "netskope-file-hash-list-update"
+					},
+					{
+						"description": "Get information about the Netskope clients.",
+						"name": "netskope-client-list"
+					},
+					{
+						"description": "List all users of certain host by its hostname.",
+						"name": "netskope-host-associated-user-list"
+					},
+					{
+						"description": "List all hosts related to a certain username.",
+						"name": "netskope-user-associated-host-list"
+					}
+				],
+				"description": "Get alerts and events, manage quarantine files as well as URL and hash lists using Netskope API v1.",
+				"id": "NetskopeAPIv1",
+				"name": "Netskope (API v1)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Netskope - Compromised Credentials Layout"
+			},
+			{
+				"description": "",
+				"name": "Netskope - Quarantine Layout"
+			},
+			{
+				"description": "",
+				"name": "Netskope -  DLP Layout"
+			},
+			{
+				"description": "",
+				"name": "Netskope -  User Analytics Layout"
+			},
+			{
+				"description": "",
+				"name": "Netskope - Malware Layout"
+			}
+		],
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:49:33Z",
+	"currentVersion": "3.3.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.41",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.89",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.35",
+			"name": "Filters And Transformers"
+		}
+	},
+	"deprecated": false,
+	"description": "Cloud access security broker that enables to find, understand, and secure cloud apps.",
+	"downloads": 2018,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Netskope",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Netskope/NetskopeAPIv1_image.png",
+			"name": "Netskope (API v1)"
+		},
+		{
+			"imagePath": "content/packs/Netskope/netskope_api_v2_image.png",
+			"name": "Netskope (API v2)"
+		},
+		{
+			"imagePath": "content/packs/Netskope/Netskope_image.png",
+			"name": "Netskope (Deprecated)"
+		}
+	],
+	"itemVersion": "3.3.1",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Netskope",
+	"packID": "Netskope",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-11-02T22:28:11Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6780549",
+	"videos": []
+}
