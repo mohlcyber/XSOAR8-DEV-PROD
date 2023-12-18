@@ -1,0 +1,1737 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Abnormal Security
+  version: -1
+configuration:
+- defaultvalue: https://api.abnormalplatform.com/v1
+  display: Server URL (e.g. https://api.abnormalplatform.com/v1)
+  name: url
+  required: true
+  type: 0
+- display: API Key
+  name: api_key
+  required: true
+  type: 4
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- additionalinfo: Maximum number of incidents per fetch. The default value is 200.
+  defaultvalue: "200"
+  display: Maximum incidents to fetch.
+  name: max_fetch
+  required: false
+  type: 0
+- display: Fetch Threats
+  name: fetch_threats
+  required: false
+  type: 8
+- display: Fetch Abuse Campaigns
+  name: fetch_abuse_campaigns
+  required: false
+  type: 8
+- display: Fetch Account Takeover Cases
+  name: fetch_account_takeover_cases
+  required: false
+  type: 8
+- additionalinfo: First alert created date to fetch. e.g., "1 min ago","2 weeks ago","3
+    months ago"
+  defaultvalue: 3 days
+  display: First fetch time
+  name: first_fetch
+  required: false
+  type: 0
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.2.2
+    packID: AbnormalSecurity
+    packName: Abnormal Security
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+defaultmapperin: Abnormal Security - Incoming Mapper
+description: Abnormal Security detects the whole spectrum of email attacks, from vendor
+  email compromise and spear-phishing to unwanted email spam and graymail. To stop
+  these advanced attacks, Abnormal leverages the industry’s most advanced behavioral
+  data science to baseline known good behavior and detects anomalies.
+detaileddescription: "### Partner Contributed Integration\n#### Integration Author:
+  Abnormal Security\nSupport and maintenance for this integration are provided by
+  the author. Please use the following contact details:\n- **Email**: [support@abnormalsecurity.com](mailto:support@abnormalsecurity.com)\n***\n##
+  Abnormal Security\n\nTo configure an instance of Abnormal Security integration in
+  Cortex XSOAR:\n\n1. Provide 'Server URL'. The default server URL should be sufficient
+  for most cases.\n\n2. Provide 'API Key':\n\n    Retrieve your authentication token
+  via the [Abnormal Portal](https://portal.abnormalsecurity.com/home/settings/integrations)\n\n
+  \   Keep the token safe, as it grants access to sensitive threat data related to
+  your organization. Store it in a secure place, such as an encrypted password vault,
+  and do not share it unless absolutely necessary. If you feel that the token has
+  been compromised, please contact your Account Manager immediately.\n    \n\n---\n[View
+  Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/abnormal-security)"
+display: Abnormal Security (Partner Contribution)
+image: data:image/png;base64,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
+name: Abnormal Security
+script:
+  commands:
+  - arguments:
+    - description: Value must be of the format `filter={FILTER KEY} gte YYYY-MM-DDTHH:MM:SSZ
+        lte YYYY-MM-DDTHH:MM:SSZ`. A `{FILTER KEY}` must be specified, and currently
+        the only keys that are supported for `/threats` are `receivedTime` and `lastModifiedTime`.
+        At least 1 of `gte`/`lte` must be specified, with a datetime string following
+        the `YYYY-MM-DDTHH:MM:SSZ format`.
+      name: filter
+    - description: Number of threats that on in each page. Each page of data will
+        have at most page_size threats. Has no effect if filter is not specified.
+      name: page_size
+    - description: 1-indexed page number to get a particular page of threats. Has
+        no effect if filter is not specified.
+      name: page_number
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Filters threats based on the source of detection.
+      name: source
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get a list of threats.
+    name: abnormal-security-list-threats
+    outputs:
+    - contextPath: AbnormalSecurity.inline_response_200.threats.threatId
+      description: An id which maps to a threat campaign. A threat campaign might
+        be received by multiple users.
+      type: String
+    - contextPath: AbnormalSecurity.inline_response_200.pageNumber
+      description: The current page number. Will not be be in the response if no filter
+        query  meter is passed in via the request.
+      type: Number
+    - contextPath: AbnormalSecurity.inline_response_200.nextpageNumber
+      description: The next page number. Will not be included in the response if there
+        are no more pages of data or if no filter query meter is passed in via the
+        request.
+      type: Number
+  - arguments:
+    - description: A UUID representing a threat campaign. Full list of threat IDs
+        can be obtained by first running the command to list a threat.
+      name: threat_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get details of a threat.
+    name: abnormal-security-get-threat
+    outputs:
+    - contextPath: AbnormalSecurity.ThreatDetails.threatId
+      description: An id which maps to a threat campaign. A threat campaign might
+        be received by multiple users.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.threatId
+      description: An id which maps to a threat campaign. A threat campaign might
+        be received by multiple users.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.abxMessageId
+      description: A unique identifier for an individual message within a threat (i.e
+        email campaign).
+      type: Number
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.abxPortalUrl
+      description: The URL at which the specific message details are viewable in Abnormal
+        Security's Portal web interface.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.subject
+      description: The email subject.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.fromAddress
+      description: The email address of the sender.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.fromName
+      description: The display name of the sender.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.toAddresses
+      description: All the email addresses to which the message was sent, comma-se
+        ted & truncated at 255 chars.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.recipientAddress
+      description: the email address of the user who actually received the message.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.receivedTime
+      description: The timestamp at which this message arrived.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.sentTime
+      description: The timestamp at which this message was sent.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.internetMessageId
+      description: The internet message ID, per RFC 822.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.autoRemediated
+      description: Abnormal has automatically detected and remediated this message
+        from the user's mailbox.
+      type: Boolean
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.postRemediated
+      description: Email campaigns that were remediated at a later time, after landing
+        in user's mailbox.
+      type: Boolean
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attackType
+      description: The type of threat the message represents.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attackStrategy
+      description: The attack strategy identified to be used by a threat campaign.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.returnPath
+      description: The potential path where information is returned to the attacker.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.senderIpAddress
+      description: IP address of sender.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.impersonatedParty
+      description: Impersonated party, if any.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attackVector
+      description: The attack medium.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.remediationTimestamp
+      description: The timestamp at which this message was remediated, or empty if
+        it has not been remediated.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.isRead
+      description: Whether an email has been read.
+      type: Boolean
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attackedParty
+      description: The party that was targeted by an attack.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attachmentCount
+      description: The number of attachments in the message.
+      type: Number
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.attachmentNames
+      description: List of attachment names in the message.
+      type: Unknown
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.ccEmails
+      description: List of CC'd email addresses.
+      type: Unknown
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.replyToEmails
+      description: List of email addresses to reply to.
+      type: Unknown
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.senderDomain
+      description: The domain of the sender's email address.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.summaryInsights
+      description: Summary insights of the message.
+      type: Unknown
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.urlCount
+      description: Count of URLs in the message.
+      type: Number
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.urls
+      description: List of URLs in the message.
+      type: Unknown
+    - contextPath: AbnormalSecurity.ThreatDetails.messages.remediationStatus
+      description: The status of remediation for the message.
+      type: String
+  - arguments:
+    - description: A UUID representing a threat campaign. Full list of threat IDs
+        can be obtained by first running the command to list a threat.
+      name: threat_id
+      required: true
+    - description: Action to perform on threat.
+      name: action
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    description: Manage a Threat identified by Abnormal Security.
+    name: abnormal-security-manage-threat
+    outputs:
+    - contextPath: AbnormalSecurity.ThreatManageResults.action_id
+      description: ID of the action taken.
+      type: String
+    - contextPath: AbnormalSecurity.ThreatManageResults.status_url
+      description: URL of the status of the action.
+      type: String
+  - arguments:
+    - description: A UUID representing a threat campaign. Full list of threat IDs
+        can be obtained by first running the command to list a threat.
+      name: threat_id
+      required: true
+    - description: A UUID representing the action id for a threat. Can be obtained
+        from payload after performing an action on the threat.
+      name: action_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Check the status of an action requested on a threat.
+    name: abnormal-security-check-threat-action-status
+    outputs:
+    - contextPath: AbnormalSecurity.ActionStatus.status
+      description: The status of a threat after performing an action on it.
+      type: String
+    - contextPath: AbnormalSecurity.ActionStatus.description
+      description: The description of the status.
+      type: String
+  - arguments:
+    - description: Filter the results based on a filter key. Value must be of the
+        format `filter={FILTER KEY} gte YYYY-MM-DDTHH:MM:SSZ lte YYYY-MM-DDTHH:MM:SSZ`.
+        Supported keys - [`receivedTime`].
+      name: filter
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Filters threats based on the source of detection.
+      name: source
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Download data from Threat Log in .csv format.
+    name: abnormal-security-download-threat-log-csv
+  - arguments:
+    - description: Value must be of the format `filter={FILTER KEY} gte YYYY-MM-DDTHH:MM:SSZ
+        lte YYYY-MM-DDTHH:MM:SSZ`. A `{FILTER KEY}` must be specified, and currently
+        the only key that is supported for `/cases` is `lastModifiedTime`. At least
+        1 of `gte`/`lte` must be specified, with a datetime string following the `YYYY-MM-DDTHH:MM:SSZ`
+        format.
+      name: filter
+    - description: Number of cases that are on each page. Each page of data will have
+        at most page_size threats. Has no effect if filter is not specified.
+      name: page_size
+    - description: 1-indexed page number to get a particular page of cases. Has no
+        effect if filter is not specified.
+      name: page_number
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get a list of Abnormal cases identified by Abnormal Security.
+    name: abnormal-security-list-abnormal-cases
+    outputs:
+    - contextPath: AbnormalSecurity.inline_response_200_1.cases.caseId
+      description: A unique identifier for this case.
+      type: String
+    - contextPath: AbnormalSecurity.inline_response_200_1.cases.description
+      description: Description of the severity level for this case.
+      type: String
+    - contextPath: AbnormalSecurity.inline_response_200_1.pageNumber
+      description: The current page number. Will not be be in the response if no filter
+        query meter is passed in via the request.
+      type: Number
+    - contextPath: AbnormalSecurity.inline_response_200_1.nextpageNumber
+      description: The next page number. Will not be included in the response if there
+        are no more pages of data or if no filter query meter is passed in via the
+        request.
+      type: Number
+  - arguments:
+    - description: A string representing the email case. Can be retrieved by first
+        running command to list cases.
+      name: case_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get details of an Abnormal case.
+    name: abnormal-security-get-abnormal-case
+    outputs:
+    - contextPath: AbnormalSecurity.AbnormalCaseDetails.caseId
+      description: A unique identifier for this case.
+      type: String
+    - contextPath: AbnormalSecurity.AbnormalCaseDetails.severity
+      description: Description of the severity level for this case.
+      type: String
+    - contextPath: AbnormalSecurity.AbnormalCaseDetails.affectedEmployee
+      description: Which employee this case pertains to.
+      type: String
+    - contextPath: AbnormalSecurity.AbnormalCaseDetails.firstObserved
+      description: First time suspicious behavior was observed.
+      type: String
+  - arguments:
+    - description: A string representing the email case. Can be retrieved by first
+        running command to list cases.
+      name: case_id
+      required: true
+    - description: Action to perform on case.
+      name: action
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    description: Manage an Abnormal Case.
+    name: abnormal-security-manage-abnormal-case
+    outputs:
+    - contextPath: AbnormalSecurity.CaseManageResults.action_id
+      description: ID of the action taken.
+      type: String
+    - contextPath: AbnormalSecurity.CaseManageResults.status_url
+      description: URL of the status of the action.
+      type: String
+  - arguments:
+    - description: A string representing the email case. Can be retrieved by first
+        running command to list cases.
+      name: case_id
+      required: true
+    - description: A string representing the email case. Can be retrieved from payload
+        after performing an action on a case.
+      name: action_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Check the status of an action requested on a case.
+    name: abnormal-security-check-case-action-status
+    outputs:
+    - contextPath: AbnormalSecurity.ActionStatus.status
+      description: Status of the case after an action is performed.
+      type: String
+    - contextPath: AbnormalSecurity.ActionStatus.description
+      description: Detailed description of the status.
+      type: String
+  - arguments:
+    - description: A string representing the email case. Can be retrieved by first
+        running command to list cases.
+      name: case_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Provides the analysis and timeline details of a case.
+    name: abnormal-security-get-case-analysis-and-timeline
+    outputs:
+    - contextPath: AbnormalSecurity.CaseAnalysis.insights.signal
+      description: Insight signal or highlight of a case.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.insights.description
+      description: Description of insight signal or highlight.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.eventTimeline.event_timestamp
+      description: Time when event occurred.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.eventTimeline.category
+      description: Type of event.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.eventTimeline.title
+      description: Title of the event.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.eventTimeline.ip_address
+      description: IP Address where user accessed mail from.
+      type: String
+    - contextPath: AbnormalSecurity.CaseAnalysis.eventTimeline.field_labels
+      description: Analysis labels associated with the fields in the timeline event.
+      type: Unknown
+  - arguments:
+    - description: Value must be of the format `filter={FILTER KEY} gte YYYY-MM-DDTHH:MM:SSZ
+        lte YYYY-MM-DDTHH:MM:SSZ`. A `{FILTER KEY}` must be specified, and currently
+        only the key `lastReportedTime` is supported for `/abusecampaigns`. At least
+        one of `gte`/`lte` must be specified, with a datetime string following the
+        `YYYY-MM-DDTHH:MM:SSZ` format. Do note that provided filter time is in UTC.
+      name: filter
+    - description: Number of abuse campaigns shown on each page. Each page of data
+        will have at most page_size abuse campaign IDs.
+      name: page_size
+    - description: 1-indexed page number to get a particular page of threats. Has
+        no effect if filter is not specified.
+      name: page_number
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get a list of campaigns submitted to Abuse Mailbox.
+    name: abnormal-security-list-abuse-mailbox-campaigns
+    outputs:
+    - contextPath: AbnormalSecurity.AbuseCampaign.campaigns.campaignId
+      description: An id which maps to an abuse campaign.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.pageNumber
+      description: The current page number.
+      type: Number
+    - contextPath: AbnormalSecurity.AbuseCampaign.nextPageNumber
+      description: The next page number.
+      type: Number
+  - arguments:
+    - description: A UUID representing the abuse campaign id. Can be Can be retrieved
+        by first running command to list abuse mailbox campaigns.
+      name: campaign_id
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Subtenant of the user (if applicable).
+      name: subtenant
+    description: Get details of an Abuse Mailbox campaign.
+    name: abnormal-security-get-abuse-mailbox-campaign
+    outputs:
+    - contextPath: AbnormalSecurity.AbuseCampaign.campaignId
+      description: An id which maps to an abuse campaign.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.firstReported
+      description: Date abuse campaign was first reported.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.lastReported
+      description: Date abuse campaign was last reported.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.messageId
+      description: A unique identifier for the first message in the abuse campaign.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.subject
+      description: Subject of the first email in the abuse campaign.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.fromName
+      description: The display name of the sender.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.fromAddress
+      description: The email address of the sender.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.recipientName
+      description: The email address of the recipient.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.recipientAddress
+      description: The email address of the recipient.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.judgementStatus
+      description: Judgement status of message.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.overallStatus
+      description: Overall status of message.
+      type: String
+    - contextPath: AbnormalSecurity.AbuseCampaign.attackType
+      description: The type of threat the message represents.
+      type: String
+  - arguments:
+    - description: Email address of the employee you want to retrieve data for.
+      name: email_address
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    description: Get employee identity analysis (Genome) data.
+    name: abnormal-security-get-employee-identity-analysis
+    outputs:
+    - contextPath: AbnormalSecurity.Employee.email
+      description: Employee email.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.histograms.key
+      description: Genome key name.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.histograms.name
+      description: Genome title.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.histograms.description
+      description: Description of genome object.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.histograms.values.value
+      description: Category value.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.histograms.values.percentage
+      description: Ratio of this category relative to others.
+      type: Number
+    - contextPath: AbnormalSecurity.Employee.histograms.values.total_count
+      description: Number of occurences for this category.
+      type: Number
+  - arguments:
+    - description: Email address of the employee you want to retrieve data for.
+      name: email_address
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    description: Get employee information.
+    name: abnormal-security-get-employee-information
+    outputs:
+    - contextPath: AbnormalSecurity.Employee.name
+      description: Name of the employee.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.email
+      description: Email of the employee.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.title
+      description: Job title of the employee.
+      type: String
+    - contextPath: AbnormalSecurity.Employee.manager
+      description: Email address of the employee's manager.
+      type: String
+  - arguments:
+    - description: Email address of the employee you want to retrieve data for.
+      name: email_address
+      required: true
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    description: Get employee login information for last 30 days in csv format.
+    name: abnormal-security-get-employee-last-30-days-login-csv
+  - arguments:
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    - description: Email of the reporter.
+      name: reporter
+      required: true
+    - description: Type of misjudgement reported.
+      name: report_type
+      required: true
+    description: Submit an Inquiry to request a report on misjudgement by Abnormal
+      Security.
+    name: abnormal-security-submit-inquiry-to-request-a-report-on-misjudgement
+    outputs:
+    - contextPath: AbnormalSecurity.SubmitInquiry.detail
+      description: Confirmation of inquiry sent.
+      type: String
+  - arguments:
+    - description: Email address of the sender.
+      name: sender_email
+      required: true
+    - description: Email address of the recipient.
+      name: recipient_email
+      required: true
+    - description: Subject of email.
+      name: subject
+      required: true
+    description: Submit a False Negative Report.
+    name: abnormal-security-submit-false-negative-report
+  - arguments:
+    - description: URL link of threat log in abnormal security portal.
+      name: portal_link
+      required: true
+    description: Submit a False Positive Report.
+    name: abnormal-security-submit-false-positive-report
+  - arguments:
+    - description: Number of vendors that should appear on each page. Each page of
+        data will have at most this many vendors.
+      name: page_size
+    - description: 1-indexed page number to get a particular page of vendors.
+      name: page_number
+    description: Get a list of vendors.
+    name: abnormal-security-list-vendors
+    outputs:
+    - contextPath: AbnormalSecurity.VendorsList
+      description: List of vendors.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorsList.vendorDomain
+      description: The domain of the vendor.
+      type: String
+  - arguments:
+    - description: The domain name of the specific vendor for which you want to get
+        details.
+      name: vendor_domain
+      required: true
+    description: Get the details of a specific vendor.
+    name: abnormal-security-get-vendor-details
+    outputs:
+    - contextPath: AbnormalSecurity.VendorDetails.vendorDomain
+      description: The domain name of the vendor.
+      type: String
+    - contextPath: AbnormalSecurity.VendorDetails.riskLevel
+      description: The risk level associated with the vendor.
+      type: String
+    - contextPath: AbnormalSecurity.VendorDetails.vendorContacts
+      description: List of contacts related to the vendor.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorDetails.companyContacts
+      description: List of contacts related to the company.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorDetails.vendorCountries
+      description: List of countries associated with the vendor.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorDetails.analysis
+      description: List of analyses associated with the vendor.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorDetails.vendorIpAddresses
+      description: List of IP addresses associated with the vendor.
+      type: Unknown
+  - arguments:
+    - description: Domain name for the vendor whose activity is to be retrieved.
+      name: vendor_domain
+      required: true
+    description: Get the activity for a specific vendor.
+    name: abnormal-security-get-vendor-activity
+    outputs:
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline
+      description: Event timeline for the vendor.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.eventTimestamp
+      description: Timestamp of the event in the vendor's activity timeline.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.eventType
+      description: Type of event in the vendor's activity timeline.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.suspiciousDomain
+      description: Suspicious domain involved in the event.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.domainIp
+      description: IP address of the suspicious domain.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.ipGeolocation
+      description: Geolocation of the IP address.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.attackGoal
+      description: The goal of the attack.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.actionTaken
+      description: Action taken in response to the event.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.hasEngagement
+      description: Indicates whether the event involved any form of engagement.
+      type: Boolean
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.recipient
+      description: The recipient targeted by the event, if applicable.
+      type: String
+    - contextPath: AbnormalSecurity.VendorActivity.eventTimeline.threatId
+      description: Unique identifier for the threat.
+      type: String
+  - arguments:
+    - description: Value must be of the format `filter={FILTER KEY} gte YYYY-MM-DDTHH:MM:SSZ
+        lte YYYY-MM-DDTHH:MM:SSZ`. A `{FILTER KEY}` must be specified, and currently
+        only the keys `firstObservedTime` and `lastModifiedTime` are supported for
+        `/vendor-cases`. At least one of `gte`/`lte` must be specified, with a datetime
+        string following the `YYYY-MM-DDTHH:MM:SSZ` format. Do note that provided
+        filter time is in UTC.
+      name: filter
+    - description: Number of vendor cases that should appear on each page. Each page
+        of data will have at most this many vendor cases.
+      name: page_size
+    - description: 1-indexed page number to get a particular page of vendor cases.
+      name: page_number
+    description: Get a list of vendor cases.
+    name: abnormal-security-list-vendor-cases
+    outputs:
+    - contextPath: AbnormalSecurity.VendorCases
+      description: List of vendor cases.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorCases.vendorCaseId
+      description: The identifier of the vendor case.
+      type: Number
+  - arguments:
+    - description: The identifier of the vendor case to retrieve details for.
+      name: case_id
+      required: true
+    description: Get the details of a vendor case.
+    name: abnormal-security-get-vendor-case-details
+    outputs:
+    - contextPath: AbnormalSecurity.VendorCaseDetails.vendorCaseId
+      description: The identifier of the vendor case.
+      type: String
+    - contextPath: AbnmoralSecurity.VendorCaseDetails.vendorDomain
+      description: The vendor domain associated with the case.
+      type: String
+    - contextPath: AbnormalSecurity.VendorCaseDetails.firstObservedTime
+      description: The time the vendor case was first observed.
+      type: String
+    - contextPath: AbnormalSecurity.VendorCaseDetails.lastModifiedTime
+      description: The last time the vendor case was modified.
+      type: String
+    - contextPath: AbnormalSecurity.VendorCaseDetails.insights
+      description: List of insights related to the vendor case.
+      type: Unknown
+    - contextPath: AbnormalSecurity.VendorCaseDetails.timeline
+      description: Timeline of events related to the vendor case.
+      type: Unknown
+  - arguments:
+    - description: The start time for retrieving the list of unanalyzed abuse mailbox
+        campaigns.
+      name: start
+    - description: The end time for retrieving the list of unanalyzed abuse mailbox
+        campaigns.
+      name: end
+    description: Get a list of unanalyzed abuse mailbox campaigns.
+    name: abnormal-security-list-unanalyzed-abuse-mailbox-campaigns
+    outputs:
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.abx_message_id
+      description: An id which maps to an abuse campaign.
+      type: Number
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.recipient.name
+      description: The name of the recipient.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.recipient.email
+      description: The email address of the recipient.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.reported_datetime
+      description: The datetime the report was made.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.reporter.email
+      description: The email address of the reporter.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.reporter.name
+      description: The name of the reporter.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.subject
+      description: The subject of the message.
+      type: String
+    - contextPath: AbnormalSecurity.UnanalyzedAbuseCampaigns.results.not_analyzed_reason
+      description: The reason the message was not analyzed.
+      type: String
+  - arguments:
+    - description: Returns test data if set to `True`.
+      name: mock-data
+    deprecated: true
+    description: Get the latest threat intel feed.
+    name: abnormal-security-get-latest-threat-intel-feed
+  dockerimage: demisto/python3:3.10.13.83255
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Abnormal Security', 'start', __line__())
+    ### pack version: 2.2.2
+
+    from typing import Dict, Any
+    import logging
+    from datetime import datetime
+
+
+    import urllib3
+
+    urllib3.disable_warnings()
+
+
+    DEFAULT_INTERVAL = 30
+    DEFAULT_TIMEOUT = 600
+    FETCH_LIMIT = 200
+    MAX_PAGE_SIZE = 100
+
+
+    XSOAR_SEVERITY_BY_AMP_SEVERITY = {
+        "Low": IncidentSeverity.LOW,
+        "Medium": IncidentSeverity.MEDIUM,
+        "High": IncidentSeverity.HIGH,
+        "Critical": IncidentSeverity.CRITICAL,
+    }
+
+    ISO_8601_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+
+    class FetchIncidentsError(Exception):
+        """Raised when there's an error in fetching incidents."""
+        pass
+
+
+    class Client(BaseClient):
+        def __init__(self, server_url, verify, proxy, headers, auth):
+            super().__init__(base_url=server_url, verify=verify, proxy=proxy, headers=headers, auth=auth, timeout=2400)
+
+        def check_the_status_of_an_action_requested_on_a_case_request(self, case_id, action_id, subtenant):
+            params = assign_params(subtenant)
+            headers = self._headers
+
+            response = self._http_request('get', f'cases/{case_id}/actions/{action_id}', params=params, headers=headers)
+
+            return response
+
+        def check_the_status_of_an_action_requested_on_a_threat_request(self, threat_id, action_id, subtenant):
+            params = assign_params(subtenant)
+            headers = self._headers
+
+            response = self._http_request('get', f'threats/{threat_id}/actions/{action_id}', params=params, headers=headers)
+
+            return response
+
+        def download_data_from_threat_log_in_csv_format_request(self, filter_, source, subtenant):
+            params = assign_params(filter=filter_, source=source, subtenant=subtenant)
+
+            headers = self._headers
+
+            response = self._http_request('get', 'threats_export/csv', params=params, headers=headers, resp_type='response')
+            return response
+
+        def get_a_list_of_abnormal_cases_identified_by_abnormal_security_request(self, filter_='', page_size=None, page_number=None,
+                                                                                 subtenant=None):
+            params = assign_params(filter=filter_, pageSize=page_size, pageNumber=page_number, subtenant=subtenant)
+
+            headers = self._headers
+
+            response = self._http_request('get', 'cases', params=params, headers=headers)
+
+            return response
+
+        def get_a_list_of_campaigns_submitted_to_abuse_mailbox_request(self, filter_='', page_size=None, page_number=None,
+                                                                       subtenant=None):
+            params = assign_params(filter=filter_, pageSize=page_size, pageNumber=page_number, subtenant=subtenant)
+
+            headers = self._headers
+
+            response = self._http_request('get', 'abusecampaigns', params=params, headers=headers)
+
+            return response
+
+        def get_a_list_of_threats_request(self, filter_='', page_size=None, page_number=None, source=None, subtenant=None):
+            params = assign_params(filter=filter_, pageSize=page_size, pageNumber=page_number, source=source, subtenant=subtenant)
+
+            headers = self._headers
+
+            response = self._http_request('get', 'threats', params=params, headers=headers)
+
+            response = self._remove_keys_from_response(response, ["pageNumber", "nextPageNumber"])
+
+            return response
+
+        def get_details_of_a_threat_request(self, threat_id, subtenant=None):
+            headers = self._headers
+            params = assign_params(subtenant=subtenant)
+
+            response = self._http_request('get', f'threats/{threat_id}', params=params, headers=headers)
+
+            return response
+
+        def get_details_of_an_abnormal_case_request(self, case_id, subtenant=None):
+            headers = self._headers
+            params = assign_params(subtenant=subtenant)
+
+            response = self._http_request('get', f'cases/{case_id}', params=params, headers=headers)
+
+            return response
+
+        def get_details_of_an_abuse_mailbox_campaign_request(self, campaign_id, subtenant=None):
+            headers = self._headers
+            params = assign_params(subtenant=subtenant)
+
+            response = self._http_request('get', f'abusecampaigns/{campaign_id}', params=params, headers=headers)
+
+            return response
+
+        def get_employee_identity_analysis_genome_data_request(self, email_address):
+
+            headers = self._headers
+
+            response = self._http_request('get', f'employee/{email_address}/identity', headers=headers)
+
+            return response
+
+        def get_employee_information_request(self, email_address):
+
+            headers = self._headers
+
+            response = self._http_request('get', f'employee/{email_address}', headers=headers)
+
+            return response
+
+        def get_employee_login_information_for_last_30_days_in_csv_format_request(self, email_address):
+
+            headers = self._headers
+
+            response = self._http_request('get', f'employee/{email_address}/logins', headers=headers, resp_type='response')
+
+            return response
+
+        def get_the_latest_threat_intel_feed_request(self):
+
+            headers = self._headers
+            response = self._http_request('get', 'threat-intel', headers=headers, timeout=120, resp_type='response')
+
+            return response
+
+        def manage_a_threat_identified_by_abnormal_security_request(self, threat_id, action):
+            headers = self._headers
+            json_data = {'action': action}
+
+            response = self._http_request('post', f'threats/{threat_id}', json_data=json_data, headers=headers)
+
+            return response
+
+        def manage_an_abnormal_case_request(self, case_id, action):
+            headers = self._headers
+            json_data = {'action': action}
+
+            response = self._http_request('post', f'cases/{case_id}', json_data=json_data, headers=headers)
+
+            return response
+
+        def provides_the_analysis_and_timeline_details_of_a_case_request(self, case_id, subtenant):
+            params = assign_params(subtenant=subtenant)
+            headers = self._headers
+
+            response = self._http_request('get', f'cases/{case_id}/analysis', params=params, headers=headers)
+
+            return response
+
+        def submit_an_inquiry_to_request_a_report_on_misjudgement_by_abnormal_security_request(self, reporter, report_type):
+            headers = self._headers
+            json_data = {
+                'reporter': reporter,
+                'report_type': report_type,
+            }
+            response = self._http_request('post', 'inquiry', json_data=json_data, headers=headers)
+
+            return response
+
+        def submit_false_negative_report_request(self, recipient_email, sender_email, subject):
+            headers = self._headers
+            json_data = {
+                "report_type": "false-negative",
+                "recipient_email": recipient_email,
+                "sender_email": sender_email,
+                "subject": subject
+            }
+            response = self._http_request('post', 'detection360/reports', json_data=json_data, headers=headers)
+
+            return response
+
+        def submit_false_positive_report_request(self, portal_link):
+            headers = self._headers
+            json_data = {
+                "report_type": "false-positive",
+                'portal_link': portal_link,
+            }
+            response = self._http_request('post', 'detection360/reports', json_data=json_data, headers=headers)
+
+            return response
+
+        def get_a_list_of_vendors_request(self, page_size, page_number):
+            params = assign_params(pageSize=page_size, pageNumber=page_number)
+
+            headers = self._headers
+
+            response = self._http_request("get", "vendors", params=params, headers=headers)
+
+            response = self._remove_keys_from_response(response, ["pageNumber", "nextPageNumber"])
+
+            return response["vendors"]
+
+        def get_the_details_of_a_specific_vendor_request(self, vendorDomain):
+            headers = self._headers
+
+            response = self._http_request("get", f"vendors/{vendorDomain}/details", headers=headers)
+
+            return response
+
+        def get_the_activity_of_a_specific_vendor_request(self, vendorDomain):
+            headers = self._headers
+
+            response = self._http_request("get", f"vendors/{vendorDomain}/activity", headers=headers)
+
+            return response
+
+        def get_a_list_of_vendor_cases_request(self, filter_, page_size, page_number):
+            params = assign_params(filter=filter_, pageSize=page_size, pageNumber=page_number)
+
+            headers = self._headers
+
+            response = self._http_request("get", "vendor-cases", params=params, headers=headers)
+
+            response = self._remove_keys_from_response(response, ["pageNumber", "nextPageNumber"])
+
+            return response["vendorCases"]
+
+        def get_the_details_of_a_vendor_case_request(self, caseId):
+            headers = self._headers
+
+            response = self._http_request("get", f"vendor-cases/{caseId}", headers=headers)
+
+            return response
+
+        def get_a_list_of_unanalyzed_abuse_mailbox_campaigns_request(self, start, end):
+            params = assign_params(start=start, end=end)
+
+            headers = self._headers
+
+            response = self._http_request("get", "abuse_mailbox/not_analyzed", params=params, headers=headers)
+
+            return response
+
+        def _remove_keys_from_response(self, response, keys_to_remove):
+            """Removes specified keys from the response."""
+            for key in keys_to_remove:
+                response.pop(key, None)
+            return response
+
+
+    def check_the_status_of_an_action_requested_on_a_case_command(client, args):
+        case_id = str(args.get('case_id', ''))
+        action_id = str(args.get('action_id', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.check_the_status_of_an_action_requested_on_a_case_request(case_id, action_id, subtenant)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.ActionStatus',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def check_the_status_of_an_action_requested_on_a_threat_command(client, args):
+        threat_id = str(args.get('threat_id', ''))
+        action_id = str(args.get('action_id', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.check_the_status_of_an_action_requested_on_a_threat_request(threat_id, action_id, subtenant)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.ActionStatus',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def download_data_from_threat_log_in_csv_format_command(client, args):
+        filter_ = str(args.get('filter', ''))
+        source = str(args.get('source', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.download_data_from_threat_log_in_csv_format_request(filter_, source, subtenant)
+        filename = 'threat_log.csv'
+        file_content = response.text
+
+        results = fileResult(filename, file_content)
+
+        return results
+
+
+    def get_a_list_of_abnormal_cases_identified_by_abnormal_security_command(client, args):
+        filter_ = str(args.get('filter', ''))
+        page_size = args.get('page_size', None)
+        page_number = args.get('page_number', None)
+        subtenant = args.get('subtenant', None)
+
+        response = client.get_a_list_of_abnormal_cases_identified_by_abnormal_security_request(
+            filter_,
+            page_size,
+            page_number,
+            subtenant
+        )
+        markdown = tableToMarkdown(
+            'Case IDs', response.get('cases', []), headers=['caseId', 'description'], removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.inline_response_200_1',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_a_list_of_campaigns_submitted_to_abuse_mailbox_command(client, args):
+        filter_ = str(args.get('filter', ''))
+        page_size = args.get('page_size', None)
+        page_number = args.get('page_number', None)
+        subtenant = args.get('subtenant', None)
+
+        response = client.get_a_list_of_campaigns_submitted_to_abuse_mailbox_request(filter_, page_size, page_number, subtenant)
+        markdown = tableToMarkdown('Campaign IDs', response.get('campaigns', []), headers=['campaignId'], removeNull=True)
+
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.AbuseCampaign',
+            outputs_key_field='campaignId',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_a_list_of_threats_command(client, args):
+        filter_ = str(args.get('filter', ''))
+        page_size = args.get('page_size', None)
+        page_number = args.get('page_number', None)
+        source = str(args.get('source', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.get_a_list_of_threats_request(filter_, page_size, page_number, source, subtenant)
+        markdown = tableToMarkdown('Threat IDs', response.get('threats'), headers=['threatId'], removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.inline_response_200',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+        return command_results
+
+
+    def get_details_of_a_threat_command(client, args):
+        threat_id = str(args.get('threat_id', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.get_details_of_a_threat_request(threat_id, subtenant)
+        headers = [
+            'subject',
+            'fromAddress',
+            'fromName',
+            'toAddresses',
+            'recipientAddress',
+            'receivedTime',
+            'attackType',
+            'attackStrategy',
+            'abxMessageId',
+            'abxPortalUrl',
+            'attachmentCount',
+            'attachmentNames',
+            'attackVector',
+            'attackedParty',
+            'autoRemediated',
+            'impersonatedParty',
+            'internetMessageId',
+            'isRead',
+            'postRemediated',
+            'remediationStatus',
+            'remediationTimestamp',
+            'sentTime',
+            'threatId',
+            'ccEmails',
+            'replyToEmails',
+            'returnPath',
+            'senderDomain',
+            'senderIpAddress',
+            'summaryInsights',
+            'urlCount'
+            'urls'
+        ]
+        markdown = tableToMarkdown(
+            f"Messages in Threat {response.get('threatId', '')}",
+            response.get('messages', []),
+            headers=headers,
+            removeNull=True
+        )
+
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.ThreatDetails',
+            outputs_key_field='threatId',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_details_of_an_abnormal_case_command(client, args):
+        case_id = str(args.get('case_id', ''))
+        subtenant = args.get('subtenant', None)
+        response = client.get_details_of_an_abnormal_case_request(case_id, subtenant)
+        headers = [
+            'caseId',
+            'severity',
+            'affectedEmployee',
+            'firstObserved',
+            'threatIds'
+        ]
+        markdown = tableToMarkdown(
+            f"Details of Case {response.get('caseId', '')}", response, headers=headers, removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.AbnormalCaseDetails',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_details_of_an_abuse_mailbox_campaign_command(client, args):
+        campaign_id = str(args.get('campaign_id', ''))
+        subtenant = args.get('subtenant', None)
+
+        response = client.get_details_of_an_abuse_mailbox_campaign_request(campaign_id, subtenant)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.AbuseCampaign.campaigns',
+            outputs_key_field='campaignId',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_employee_identity_analysis_genome_data_command(client, args):
+        email_address = str(args.get('email_address', ''))
+
+        response = client.get_employee_identity_analysis_genome_data_request(email_address)
+
+        headers = ['description', 'key', 'name', 'values']
+
+        markdown = tableToMarkdown(
+            f"Analysis of {email_address}", response.get('data', []), headers=headers, removeNull=True)
+
+        response["email"] = email_address
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.Employee',
+            outputs_key_field='email',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_employee_information_command(client, args):
+        email_address = str(args.get('email_address', ''))
+
+        response = client.get_employee_information_request(email_address)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.Employee',
+            outputs_key_field='email',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_employee_login_information_for_last_30_days_in_csv_format_command(client, args):
+        email_address = str(args.get('email_address', ''))
+
+        response = client.get_employee_login_information_for_last_30_days_in_csv_format_request(email_address)
+        filename = 'employee_login_info_30_days.csv'
+        file_content = response.text
+
+        results = fileResult(filename, file_content)
+
+        return results
+
+
+    def get_the_latest_threat_intel_feed_command(client, args=None):
+
+        response = client.get_the_latest_threat_intel_feed_request()
+        filename = 'threat_intel_feed.json'
+        file_content = response.text
+        results = fileResult(filename, file_content)
+
+        return results
+
+
+    def manage_a_threat_identified_by_abnormal_security_command(client, args):
+        threat_id = str(args.get('threat_id', ''))
+        action = str(args.get('action', ''))
+
+        response = client.manage_a_threat_identified_by_abnormal_security_request(threat_id, action)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.ThreatManageResults',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def manage_an_abnormal_case_command(client, args):
+        case_id = str(args.get('case_id', ''))
+        action = str(args.get('action', ''))
+
+        response = client.manage_an_abnormal_case_request(case_id, action)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.CaseManageResults',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def provides_the_analysis_and_timeline_details_of_a_case_command(client, args):
+        case_id = str(args.get('case_id', ''))
+        subtenant = args.get('subtenant', None)
+        response = client.provides_the_analysis_and_timeline_details_of_a_case_request(case_id, subtenant)
+        insight_headers = [
+            'signal',
+            'description'
+        ]
+        markdown = tableToMarkdown(
+            f"Insights for {case_id}", response.get('insights', []), headers=insight_headers, removeNull=True)
+
+        timeline_headers = [
+            'event_timestamp',
+            'category',
+            'title',
+            'field_labels',
+            'ip_address',
+            'description',
+            'location',
+            'sender',
+            'subject',
+            'title',
+            'flagging detectors',
+            'rule_name'
+        ]
+
+        markdown += tableToMarkdown(
+            f"Event Timeline for {response.get('caseId', '')}",
+            response.get('eventTimeline', []),
+            headers=timeline_headers,
+            removeNull=True
+        )
+
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.CaseAnalysis',
+            outputs_key_field='caseId',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def submit_an_inquiry_to_request_a_report_on_misjudgement_by_abnormal_security_command(client, args):
+        reporter = str(args.get('reporter', ''))
+        report_type = str(args.get('report_type', ''))
+        response = client.submit_an_inquiry_to_request_a_report_on_misjudgement_by_abnormal_security_request(reporter, report_type)
+        command_results = CommandResults(
+            outputs_prefix='AbnormalSecurity.SubmitInquiry',
+            outputs_key_field='',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def submit_false_negative_report_command(client, args):
+        recipient_email = str(args.get('recipient_email;', ''))
+        sender_email = str(args.get('sender_email', ''))
+        subject = str(args.get('subject', ''))
+        response = client.submit_false_negative_report_request(recipient_email, sender_email, subject)
+        command_results = CommandResults(
+            readable_output=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def submit_false_positive_report_command(client, args):
+        portal_link = str(args.get('portal_link;', ''))
+        response = client.submit_false_positive_report_request(portal_link)
+        command_results = CommandResults(
+            readable_output=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_a_list_of_vendors_command(client, args):
+        page_size = str(args.get('page_size', ''))
+        page_number = str(args.get('page_number', ''))
+        response = client.get_a_list_of_vendors_request(page_size, page_number)
+        markdown = tableToMarkdown('Vendor Domains', response, headers=['vendorDomain'], removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.VendorsList',
+            outputs_key_field='vendorDomain',
+            outputs=response,
+            raw_response=response,
+        )
+
+        return command_results
+
+
+    def get_the_details_of_a_specific_vendor_command(client, args):
+        vendor_domain: str = args['vendor_domain']
+        response = client.get_the_details_of_a_specific_vendor_request(vendor_domain)
+        markdown = tableToMarkdown('Vendor Domain', response, removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.VendorDetails',
+            outputs_key_field='vendorDomain',
+            outputs=response,
+            raw_response=response,
+        )
+
+        return command_results
+
+
+    def get_the_activity_of_a_specific_vendor_command(client, args):
+        vendor_domain: str = args['vendor_domain']
+        response = client.get_the_activity_of_a_specific_vendor_request(vendor_domain)
+        markdown = tableToMarkdown('Vendor Activity', response.get('eventTimeline'), removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.VendorActivity',
+            outputs_key_field="",
+            outputs=response,
+            raw_response=response,
+        )
+
+        return command_results
+
+
+    def get_a_list_of_vendor_cases_command(client, args):
+        filter_ = str(args.get('filter', ''))
+        page_size = str(args.get('page_size', ''))
+        page_number = str(args.get('page_number', ''))
+
+        response = client.get_a_list_of_vendor_cases_request(filter_, page_size, page_number)
+        markdown = tableToMarkdown('Vendor Case IDs', response, removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.VendorCases',
+            outputs_key_field="vendorCaseId",
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def get_the_details_of_a_vendor_case_command(client, args):
+        case_id: str = args['case_id']
+        response = client.get_the_details_of_a_vendor_case_request(case_id)
+        markdown = tableToMarkdown('Case Details', response, removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.VendorCaseDetails',
+            outputs_key_field='vendorCaseId',
+            outputs=response,
+            raw_response=response,
+        )
+
+        return command_results
+
+
+    def get_a_list_of_unanalyzed_abuse_mailbox_campaigns_command(client, args):
+        start = str(args.get('start', ''))
+        end = str(args.get('end', ''))
+
+        response = client.get_a_list_of_unanalyzed_abuse_mailbox_campaigns_request(start, end)
+        markdown = tableToMarkdown('Unanalyzed Abuse Mailbox Campaigns', response.get('results', []), removeNull=True)
+        command_results = CommandResults(
+            readable_output=markdown,
+            outputs_prefix='AbnormalSecurity.UnanalyzedAbuseCampaigns',
+            outputs_key_field='abx_message_id',
+            outputs=response,
+            raw_response=response
+        )
+
+        return command_results
+
+
+    def generate_threat_incidents(client, threats):
+        incidents = []
+        for threat in threats:
+            threat_details = client.get_details_of_a_threat_request(threat["threatId"])
+            incident = {
+                "dbotMirrorId": str(threat["threatId"]),
+                "name": "Threat",
+                "occurred": threat_details["messages"][0].get("receivedTime"),
+                "details": "Threat",
+                "rawJSON": json.dumps(threat_details) if threat_details else {}
+            }
+            incidents.append(incident)
+        return incidents
+
+
+    def generate_abuse_campaign_incidents(client, campaigns):
+        incidents = []
+        for campaign in campaigns:
+            campaign_details = client.get_details_of_an_abuse_mailbox_campaign_request(campaign["campaignId"])
+            incident = {"dbotMirrorId": str(campaign["campaignId"]), "name": "Abuse Campaign",
+                        "occurred": campaign_details["firstReported"], 'details': "Abuse Campaign",
+                        "rawJSON": json.dumps(campaign_details) if campaign_details else {}}
+            incidents.append(incident)
+        return incidents
+
+
+    def generate_account_takeover_cases_incidents(client, cases):
+        incidents = []
+        for case in cases:
+            case_details = client.get_details_of_an_abnormal_case_request(case["caseId"])
+            incident = {"dbotMirrorId": str(case["caseId"]), "name": "Account Takeover Case",
+                        "occurred": case_details["firstObserved"], 'details': case['description'],
+                        "rawJSON": json.dumps(case_details) if case_details else {}}
+            incidents.append(incident)
+        return incidents
+
+
+    def fetch_incidents(
+            client: Client,
+            last_run: Dict[str, Any],
+            first_fetch_time: str,
+            fetch_threats: bool,
+            fetch_abuse_campaigns: bool,
+            fetch_account_takeover_cases: bool,
+            max_incidents_to_fetch: Optional[int] = FETCH_LIMIT
+    ):
+        """
+        Fetch incidents from various sources (threats, abuse campaigns, and account takeovers).
+
+        Parameters:
+        - client (Client): Client object to interact with the API.
+        - last_run (Dict[str, Any]): Dictionary containing details about the last time incidents were fetched.
+        - first_fetch_time (str): ISO formatted string indicating the first time from which to start fetching incidents.
+        - max_incidents_to_fetch (int, optional): Maximum number of incidents to fetch. Defaults to FETCH_LIMIT.
+
+        Returns:
+        - Tuple[Dict[str, str], List[Dict]]: Tuple containing a dictionary with the `last_fetch` time and a list of fetched incidents.
+        """
+
+        try:
+            last_fetch = last_run.get("last_fetch", first_fetch_time)
+            last_fetch_datetime = datetime.fromisoformat(last_fetch[:-1]).astimezone(timezone.utc)
+            last_fetch = last_fetch_datetime.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+            current_datetime = datetime.utcnow().astimezone(timezone.utc)
+            current_iso_format_time = current_datetime.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            all_incidents = []
+
+            if fetch_threats:
+                threats_filter = f"receivedTime gte {last_fetch}"
+                threats_response = client.get_a_list_of_threats_request(filter_=threats_filter, page_size=100)
+                all_incidents += generate_threat_incidents(client, threats_response.get('threats', []))
+
+            if fetch_abuse_campaigns:
+                abuse_campaigns_filter = f"lastReportedTime gte {last_fetch}"
+                abuse_campaigns_response = client.get_a_list_of_campaigns_submitted_to_abuse_mailbox_request(
+                    filter_=abuse_campaigns_filter, page_size=100)
+                all_incidents += generate_abuse_campaign_incidents(client, abuse_campaigns_response.get('campaigns', []))
+
+            if fetch_account_takeover_cases:
+                account_takeover_cases_filter = f"lastModifiedTime gte {last_fetch}"
+                account_takeover_cases_response = client.get_a_list_of_abnormal_cases_identified_by_abnormal_security_request(
+                    filter_=account_takeover_cases_filter, page_size=100)
+                all_incidents += generate_account_takeover_cases_incidents(
+                    client, account_takeover_cases_response.get('cases', []))
+
+        except Exception as e:
+            logging.error(f"Failed fetching incidents: {e}")
+            raise FetchIncidentsError(f"Error while fetching incidents: {e}")
+
+        next_run = {
+            "last_fetch": current_iso_format_time
+        }
+
+        return next_run, all_incidents[:max_incidents_to_fetch]
+
+
+    def test_module(client):
+        # Run a sample request to retrieve mock data
+        client.get_a_list_of_threats_request(None, None, None, None)
+        demisto.results("ok")
+
+
+    def main():  # pragma: nocover
+        params = demisto.params()
+        args = demisto.args()
+        url = params.get('url')
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        is_fetch = params.get('isFetch')
+        headers = {}
+        mock_data = str(args.get('mock-data', ''))
+        if mock_data.lower() == "true":
+            headers['Mock-Data'] = "True"
+        headers['Authorization'] = f'Bearer {params["api_key"]}'
+        headers['Soar-Integration-Origin'] = "Cortex XSOAR"
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+
+        try:
+            client = Client(urljoin(url, ''), verify_certificate, proxy, headers=headers, auth=None)
+
+            commands = {
+                # Threat commands
+                'abnormal-security-list-threats':
+                    get_a_list_of_threats_command,
+                'abnormal-security-get-threat':
+                    get_details_of_a_threat_command,
+                'abnormal-security-manage-threat':
+                    manage_a_threat_identified_by_abnormal_security_command,
+                'abnormal-security-check-threat-action-status':
+                    check_the_status_of_an_action_requested_on_a_threat_command,
+                'abnormal-security-download-threat-log-csv': download_data_from_threat_log_in_csv_format_command,
+
+                # Case commands
+                'abnormal-security-list-abnormal-cases':
+                    get_a_list_of_abnormal_cases_identified_by_abnormal_security_command,
+                'abnormal-security-get-abnormal-case':
+                    get_details_of_an_abnormal_case_command,
+                'abnormal-security-manage-abnormal-case':
+                    manage_an_abnormal_case_command,
+                'abnormal-security-check-case-action-status':
+                    check_the_status_of_an_action_requested_on_a_case_command,
+                'abnormal-security-get-case-analysis-and-timeline':
+                    provides_the_analysis_and_timeline_details_of_a_case_command,
+
+                # Threat Intel commands
+                'abnormal-security-get-latest-threat-intel-feed': get_the_latest_threat_intel_feed_command,
+
+                # Abuse Mailbox commands
+                'abnormal-security-list-abuse-mailbox-campaigns': get_a_list_of_campaigns_submitted_to_abuse_mailbox_command,
+                'abnormal-security-get-abuse-mailbox-campaign': get_details_of_an_abuse_mailbox_campaign_command,
+                "abnormal-security-list-unanalyzed-abuse-mailbox-campaigns":
+                    get_a_list_of_unanalyzed_abuse_mailbox_campaigns_command,
+
+                # Employee commands
+                'abnormal-security-get-employee-identity-analysis': get_employee_identity_analysis_genome_data_command,
+                'abnormal-security-get-employee-information': get_employee_information_command,
+                'abnormal-security-get-employee-last-30-days-login-csv':
+                    get_employee_login_information_for_last_30_days_in_csv_format_command,
+
+                # Detection 360 commands
+                'abnormal-security-submit-inquiry-to-request-a-report-on-misjudgement':
+                    submit_an_inquiry_to_request_a_report_on_misjudgement_by_abnormal_security_command,
+                'abnormal-security-submit-false-negative-report':
+                    submit_false_negative_report_command,
+                'abnormal-security-submit-false-positive-report':
+                    submit_false_positive_report_command,
+
+                # Vendor commands
+                "abnormal-security-list-vendors":
+                    get_a_list_of_vendors_command,
+                "abnormal-security-get-vendor-details":
+                    get_the_details_of_a_specific_vendor_command,
+                "abnormal-security-get-vendor-activity":
+                    get_the_activity_of_a_specific_vendor_command,
+
+                # Vendor case commands
+                "abnormal-security-list-vendor-cases":
+                    get_a_list_of_vendor_cases_command,
+                "abnormal-security-get-vendor-case-details":
+                    get_the_details_of_a_vendor_case_command,
+
+            }
+
+            if command == 'test-module':
+                headers['Mock-Data'] = "True"
+                test_client = Client(urljoin(url, ''), verify_certificate, proxy, headers=headers, auth=None)
+                test_module(test_client)
+            elif command == 'fetch-incidents' and is_fetch:
+                max_incidents_to_fetch = arg_to_number(params.get("max_fetch", FETCH_LIMIT))
+                fetch_threats = params.get("fetch_threats", False)
+                fetch_abuse_campaigns = params.get("fetch_abuse_campaigns", False)
+                fetch_account_takeover_cases = params.get("fetch_account_takeover_cases", False)
+                first_fetch_datetime = arg_to_datetime(arg=params.get("first_fetch"), arg_name="First fetch time", required=True)
+                if first_fetch_datetime:
+                    first_fetch_time = first_fetch_datetime.strftime(ISO_8601_FORMAT)
+                else:
+                    first_fetch_time = datetime.now().strftime(ISO_8601_FORMAT)
+                next_run, incidents = fetch_incidents(
+                    client=client,
+                    last_run=demisto.getLastRun(),
+                    first_fetch_time=first_fetch_time,
+                    max_incidents_to_fetch=max_incidents_to_fetch,
+                    fetch_threats=fetch_threats,
+                    fetch_abuse_campaigns=fetch_abuse_campaigns,
+                    fetch_account_takeover_cases=fetch_account_takeover_cases
+                )
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+            elif command in commands:
+                return_results(commands[command](client, args))  # type: ignore
+            else:
+                raise NotImplementedError(f'{command} command is not implemented.')
+
+        except Exception as e:
+            return_error(str(e))
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('Abnormal Security', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
