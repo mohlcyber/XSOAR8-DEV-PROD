@@ -1,0 +1,223 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.2.4
+    packID: ""
+    packName: Common Playbooks
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: |-
+  Enrich domains using one or more integrations.
+  Domain enrichment includes:
+  * Threat information
+id: 877767b9-07c7-49e2-8548-6232c1a388af
+inputs:
+- description: The domain name to enrich.
+  key: Domain
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: Name
+      root: Domain
+      transformers:
+      - operator: uniq
+name: Domain Enrichment
+outputs:
+- contextPath: Domain
+  description: The domain objects.
+  type: unknown
+- contextPath: DBotScore
+  description: Indicator, Score, Type, and Vendor.
+  type: unknown
+sourceplaybookid: Domain Enrichment - Generic v2
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7abe566b-ba61-4da0-8809-471f41feb97b
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7abe566b-ba61-4da0-8809-471f41feb97b
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 281,
+          "y": 41
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Domain
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "24"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the playbook's input contains at least one domain
+        name to enrich.
+      id: 84e8dd0e-03e3-4a70-870b-8df09eb6ce06
+      iscommand: false
+      name: Is there a domain to enrich?
+      type: condition
+      version: -1
+    taskid: 84e8dd0e-03e3-4a70-870b-8df09eb6ce06
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 281,
+          "y": 171
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: da6714fc-805f-4f7f-8e98-960ed24620c0
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: da6714fc-805f-4f7f-8e98-960ed24620c0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 281,
+          "y": 765
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      domain:
+        complex:
+          root: inputs.Domain
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the reputation of a domain.
+      id: 128d4a7b-0bb4-4c9f-887f-edbe3ce7b767
+      iscommand: true
+      name: Enrich Domain
+      script: '|||domain'
+      type: regular
+      version: -1
+    taskid: 128d4a7b-0bb4-4c9f-887f-edbe3ce7b767
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 400
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicator:
+        complex:
+          root: inputs.Domain
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Enrich indicators using Unit42
+      id: b4d6cb59-9cf7-4ff3-8bd9-edbb35a6ab60
+      iscommand: false
+      name: Enrich Domain
+      script: 40b261b7-ad22-48de-8634-a4f1ced06e73
+      type: regular
+      version: -1
+    taskid: b4d6cb59-9cf7-4ff3-8bd9-edbb35a6ab60
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 560
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "16_24_#default#": 0.18
+    },
+    "paper": {
+      "dimensions": {
+        "height": 789,
+        "width": 719,
+        "x": 281,
+        "y": 41
+      }
+    }
+  }
