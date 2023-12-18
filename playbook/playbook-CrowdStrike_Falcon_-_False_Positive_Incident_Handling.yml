@@ -1,0 +1,865 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.12.8
+    packID: CrowdStrikeFalcon
+    packName: CrowdStrike Falcon
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+  This playbook handles a CrowdStrike incident that was determined
+  to be a false positive by the analyst. Actions include unisolating the host, allowing
+  the indicator by the EDR, and tagging it.
+id: CrowdStrike Falcon - False Positive Incident Handling
+inputs:
+- description: Whether automatic un-isolation is allowed.
+  key: AutoUnisolation
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+- description: The host ID to unisolate.
+  key: HostId
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The tag name to apply to the allowed indicator.
+  key: AllowIOCTagName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Whether the indicator is globally added to the allow list.
+    If 'false', specify the group name for the AllowHostGroup input.
+  key: ApplyAllowIOCGlobally
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: The name of the allow list group to apply if ApplyAllowIOCGlobally
+    is set to 'false'.
+  key: AllowHostGroupName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The close notes to be listed in CrowdStrike.
+  key: CloseNotes
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The SHA256 value to manage.
+  key: Sha256
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: CrowdStrike Falcon - False Positive Incident Handling
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3026daa5-36c2-4ec1-8e55-8e407bc05126
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3026daa5-36c2-4ec1-8e55-8e407bc05126
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": -700
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 981777f0-747b-412b-8720-841e96ae0e1b
+      iscommand: false
+      name: Unisolate host
+      type: title
+      version: -1
+    taskid: 981777f0-747b-412b-8720-841e96ae0e1b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -60,
+          "y": -550
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Approve unisolation
+      cc: null
+      format: ""
+      methods: []
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      "No":
+      - "6"
+      "Yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Approve unisolation.
+      id: b0caa705-4c6e-4aff-80e6-ee45435a449d
+      iscommand: false
+      name: Approve unisolation
+      type: condition
+      version: -1
+    taskid: b0caa705-4c6e-4aff-80e6-ee45435a449d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 380
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: aed8c545-a43d-4064-88c7-be8c2e5c4415
+      iscommand: false
+      name: Done False Positive
+      type: title
+      version: -1
+    taskid: aed8c545-a43d-4064-88c7-be8c2e5c4415
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 410,
+          "y": 1240
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d454a7d0-22e4-484a-8ea0-89565a7e79cb
+      iscommand: false
+      name: False positive Incident closing
+      type: title
+      version: -1
+    taskid: d454a7d0-22e4-484a-8ea0-89565a7e79cb
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": 740
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 56933e67-76cb-4fc5-882e-b7f60fd69a8a
+      iscommand: false
+      name: Allow indicators
+      type: title
+      version: -1
+    taskid: 56933e67-76cb-4fc5-882e-b7f60fd69a8a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1090,
+          "y": -550
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action:
+        simple: allow
+      applied_globally:
+        simple: "true"
+      ioc_type:
+        simple: sha256
+      platforms:
+        simple: mac,windows,linux
+      value:
+        complex:
+          accessor: "0"
+          root: Provide the indicator to be added to the allow list.Answers
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Uploads an indicator for CrowdStrike to monitor.
+      id: b85e29b0-aac6-4983-8d5d-8b9e46199f49
+      iscommand: true
+      name: Allow IOC globally
+      script: '|||cs-falcon-upload-custom-ioc'
+      type: regular
+      version: -1
+    taskid: b85e29b0-aac6-4983-8d5d-8b9e46199f49
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 500
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ids:
+        simple: ${incident.externalsystemid}
+      status:
+        simple: Closed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Resolves the CrowdStrike incident.
+      id: 97d3043a-800a-4205-81bd-ae13f2358967
+      iscommand: true
+      name: Resolve CS incident
+      script: '|||cs-falcon-resolve-incident'
+      type: regular
+      version: -1
+    taskid: 97d3043a-800a-4205-81bd-ae13f2358967
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 200,
+          "y": 1065
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: ${inputs.CloseNotes}
+      ids:
+        simple: ${incident.externalsystemid}
+      status:
+        simple: false_positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Resolves and updates a detection using the provided arguments.
+        At least one optional argument must be passed, otherwise no change will take
+        place.
+      id: e23baad2-a8b7-4153-8d3c-9956d07add98
+      iscommand: true
+      name: Resolve CS detection
+      script: '|||cs-falcon-resolve-detection'
+      type: regular
+      version: -1
+    taskid: e23baad2-a8b7-4153-8d3c-9956d07add98
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": 1065
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Provide the indicator to be added to the allow list
+        options: []
+        optionsarg:
+        - simple: ${inputs.Sha256}
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: multiSelect
+      sender: ""
+      title: Provide the indicator to be added to the allow list
+      totalanswers: 0
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Approve adding indicators to allow list
+      cc: null
+      format: ""
+      methods: []
+      replyOptions:
+      - "Yes"
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Choose the marked IOC to be added to approve list.
+      id: b3ef09f8-b0b2-40af-89d2-4238dc78801a
+      iscommand: false
+      name: Which indicator should be added to the allow list?
+      type: collection
+      version: -1
+    taskid: b3ef09f8-b0b2-40af-89d2-4238dc78801a
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1090,
+          "y": -410
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.externalcategoryname
+          operator: isEqualString
+          right:
+            value:
+              simple: incident
+      label: incident
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.externalcategoryname
+          operator: isEqualString
+          right:
+            value:
+              simple: detection
+      label: detection
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      detection:
+      - "10"
+      incident:
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Determine which resolution procedure should be followed based on
+        the CrowdStrike Falcon category of the incident.
+      id: 5f4f88e4-8852-4e74-8c8c-aecd084bff3e
+      iscommand: false
+      name: Was this an incident or alert?
+      type: condition
+      version: -1
+    taskid: 5f4f88e4-8852-4e74-8c8c-aecd084bff3e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": 870
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: inputs.AutoUnisolation
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies whether auto-unisolation is permitted.
+      id: eeedac89-58d8-46ee-8c32-5b86873af04b
+      iscommand: false
+      name: Is auto unisolation allowed?
+      type: condition
+      version: -1
+    taskid: eeedac89-58d8-46ee-8c32-5b86873af04b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -60,
+          "y": 205
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Endpoint_id:
+        complex:
+          root: inputs.HostId
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook unisolates devices according to the device ID that
+        is provided in the playbook input.
+      id: a0b5b989-ff2e-4ed4-8305-ee5f48408393
+      iscommand: false
+      name: Crowdstrike Falcon - Unisolate Endpoint
+      playbookId: Crowdstrike Falcon - Unisolate Endpoint
+      type: playbook
+      version: -1
+    taskid: a0b5b989-ff2e-4ed4-8305-ee5f48408393
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -60,
+          "y": 550
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: "0"
+          root: Provide the indicator to be added to the allow list.Answers
+      tags:
+        complex:
+          root: inputs.AllowIOCTagName
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.indicators
+      id: 47871c7f-9c20-4e4a-834b-75570b5aed0d
+      iscommand: true
+      name: Tag Indicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 47871c7f-9c20-4e4a-834b-75570b5aed0d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 560
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 73b1f577-8662-4f6f-8217-ab28e2d3a3c4
+      iscommand: false
+      name: Tag
+      type: title
+      version: -1
+    taskid: 73b1f577-8662-4f6f-8217-ab28e2d3a3c4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 115
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d6240314-998f-44f4-8943-0ba6d7bc91e2
+      iscommand: false
+      name: Allow on EDR
+      type: title
+      version: -1
+    taskid: d6240314-998f-44f4-8943-0ba6d7bc91e2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": -60
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: inputs.ApplyAllowIOCGlobally
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: Globally
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: inputs.ApplyAllowIOCGlobally
+          operator: isNotEqualString
+          right:
+            value:
+              simple: "true"
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.AllowHostGroupName
+          operator: isNotEmpty
+      label: Host Group
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      Globally:
+      - "8"
+      Host Group:
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Examines whether the addition of an IOC is permitted at the global
+        level.
+      id: 67ddbfc6-473e-4072-8038-0d7ef2899f18
+      iscommand: false
+      name: Is IOC allowed to be added globally?
+      type: condition
+      version: -1
+    taskid: 67ddbfc6-473e-4072-8038-0d7ef2899f18
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 150
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action:
+        simple: allow
+      host_groups:
+        complex:
+          root: inputs.AllowHostGroupName
+      ioc_type:
+        simple: sha256
+      platforms:
+        simple: mac,windows,linux
+      value:
+        complex:
+          accessor: "0"
+          root: Provide the indicator to be added to the allow list.Answers
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Uploads an indicator for CrowdStrike to monitor.
+      id: 0c4c2f9b-42bd-4179-813f-4f25011ecb52
+      iscommand: true
+      name: Allow IOC for group
+      script: '|||cs-falcon-upload-custom-ioc'
+      type: regular
+      version: -1
+    taskid: 0c4c2f9b-42bd-4179-813f-4f25011ecb52
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 500
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Provide the indicator to be added to the allow list.Answers.0
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "19"
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies that indicators were selected for inclusion in the allowed
+        list.
+      id: 08e14465-98cb-4dc0-8ded-2c648e8bc5a9
+      iscommand: false
+      name: Were values provided?
+      type: condition
+      version: -1
+    taskid: 08e14465-98cb-4dc0-8ded-2c648e8bc5a9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": -240
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2005,
+        "width": 2340,
+        "x": -60,
+        "y": -700
+      }
+    }
+  }
