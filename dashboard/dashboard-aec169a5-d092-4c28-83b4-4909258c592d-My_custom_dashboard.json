@@ -1,0 +1,149 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "aec169a5-d092-4c28-83b4-4909258c592d",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "5c584940-69aa-11ed-a712-c7c53b2676d1",
+			"id": "5c584940-69aa-11ed-a712-c7c53b2676d1",
+			"reflectDimensions": true,
+			"w": 8,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "active-incidents-by-type",
+				"isPredefined": true,
+				"itemVersion": "1.2.9",
+				"modified": "2022-09-26T20:31:59.244614862Z",
+				"name": "Active Incidents - Line chart",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"occurred(d)",
+						"type"
+					]
+				},
+				"prevName": "Active Incidents - Line chart",
+				"propagationLabels": [],
+				"query": "-category:job and -status:archived and -status:closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 2,
+				"widgetType": "line"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "6dae2700-69aa-11ed-a712-c7c53b2676d1",
+			"id": "6dae2700-69aa-11ed-a712-c7c53b2676d1",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "63355d7b-6afc-48ac-82ac-5c92a8f51d98",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2022-11-21T14:40:20.396129191Z",
+				"name": "Incidents by type",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"type",
+						"severity"
+					],
+					"valuesFormat": "abbreviated"
+				},
+				"prevName": "Incidents by type",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 8,
+			"y": 0
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "My custom dashboard",
+	"owner": "",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
