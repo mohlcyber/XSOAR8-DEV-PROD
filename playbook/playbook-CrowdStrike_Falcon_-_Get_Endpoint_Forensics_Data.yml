@@ -1,0 +1,428 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.12.8
+    packID: CrowdStrikeFalcon
+    packName: CrowdStrike Falcon
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+  This playbook extracts data from the host using RTR commands. For example, commands for getting a list of running processes and network connections.
+id: CrowdStrike Falcon - Get Endpoint Forensics Data
+inputs:
+- description: The ID of the host to use.
+  key: DeviceId
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: CrowdStrike Falcon - Get Endpoint Forensics Data
+outputs:
+- contextPath: CrowdStrike.Command
+  description: The results of the forensics commands.
+  type: string
+- contextPath: CrowdStrike.Device
+  description: CrowdStrike Device's information.
+  type: unknown
+- contextPath: Endpoint
+  description: Device's information.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 91130fbd-2e6e-4816-825e-3d3eb630cea8
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 91130fbd-2e6e-4816-825e-3d3eb630cea8
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": -680
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host_id:
+        simple: ${inputs.DeviceId}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Executes a RTR active-responder ps command to get a list of active
+        processes across the given host.
+      id: 48450f6a-9b2d-481b-8844-e16ac557dfca
+      iscommand: true
+      name: List processes
+      script: '|||cs-falcon-rtr-list-processes'
+      type: regular
+      version: -1
+    taskid: 48450f6a-9b2d-481b-8844-e16ac557dfca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 300
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host_id:
+        simple: ${inputs.DeviceId}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Executes a RTR active-responder netstat command to get a list of
+        network status and protocol statistics across the given host.
+      id: 36e343d9-fef3-4656-8c31-1d284c9e5476
+      iscommand: true
+      name: List network connections
+      script: '|||cs-falcon-rtr-list-network-stats'
+      type: regular
+      version: -1
+    taskid: 36e343d9-fef3-4656-8c31-1d284c9e5476
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 300
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0bd570e4-be9b-4078-85c3-b3327f53134d
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0bd570e4-be9b-4078-85c3-b3327f53134d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": 480
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: Endpoint.Status
+          operator: isEqualString
+          right:
+            value:
+              simple: Online
+      - - left:
+            iscontext: true
+            value:
+              simple: Endpoint.ID
+          operator: in
+          right:
+            iscontext: true
+            value:
+              simple: inputs.DeviceId
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the device is online
+      id: f1d5ee51-377a-499a-85bf-14bc1b816d5c
+      iscommand: false
+      name: Check if the device is online
+      type: condition
+      version: -1
+    taskid: f1d5ee51-377a-499a-85bf-14bc1b816d5c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": 130
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.DeviceId
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "9"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if device ID provided
+      id: fc7c593b-2e96-40de-8d2e-1a29f22325d3
+      iscommand: false
+      name: Check if device ID provided
+      type: condition
+      version: -1
+    taskid: fc7c593b-2e96-40de-8d2e-1a29f22325d3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": -550
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ids:
+        complex:
+          root: inputs.DeviceId
+          transformers:
+          - operator: uniq
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: Provide an Endpoint ID.Answers.0
+            operator: append
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches for a device that matches the query.
+      id: e6b26677-133f-4eb5-8b9a-33d85675a350
+      iscommand: true
+      name: Get Device Status
+      script: '|||cs-falcon-search-device'
+      type: regular
+      version: -1
+    taskid: e6b26677-133f-4eb5-8b9a-33d85675a350
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": -35
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    form:
+      description: This incident contains no endpoint IDs. Please provide single or
+        multiple endpoint IDs to proceed with endpoint enrichment.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Which endpoints would you like to enrich?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: Provide an Endpoint ID
+      totalanswers: 0
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Provide an Endpoint ID
+      id: 30e8ac38-3a63-43f7-8a36-eb9b807f2015
+      iscommand: false
+      name: Provide an Endpoint ID
+      type: collection
+      version: -1
+    taskid: 30e8ac38-3a63-43f7-8a36-eb9b807f2015
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": -370
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      agentsid:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Provide an Endpoint ID.Answers.0
+              operator: isNotEmpty
+          root: Provide an Endpoint ID.Answers.0
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 7b1c7d74-71a4-46e3-871e-ea7a118a314d
+      iscommand: true
+      name: Set the endpoint IDs to the incident field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 7b1c7d74-71a4-46e3-871e-ea7a118a314d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": -210
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1225,
+        "width": 850,
+        "x": 490,
+        "y": -680
+      }
+    }
+  }
