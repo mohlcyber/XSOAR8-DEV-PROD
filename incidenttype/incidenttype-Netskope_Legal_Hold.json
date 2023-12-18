@@ -1,0 +1,39 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#C2ACF2",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "6.2.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Netskope Legal Hold",
+	"itemVersion": "3.3.1",
+	"layout": "",
+	"locked": false,
+	"name": "Netskope Legal Hold",
+	"onChangeRepAlg": 0,
+	"packID": "Netskope",
+	"packName": "Netskope",
+	"packPropagationLabels": [
+		"all"
+	],
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
