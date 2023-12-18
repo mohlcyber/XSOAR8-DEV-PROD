@@ -1,0 +1,472 @@
+category: Network Security
+commonfields:
+  id: Netskope (API v2)
+  version: -1
+configuration:
+- display: URL of Netskope Tenant (e.g. https://tenant.goskope.com)
+  name: url
+  required: true
+  type: 0
+- display: API Key
+  hidden: true
+  name: api_key
+  required: false
+  type: 4
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: api_key_credentials
+  required: false
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.2
+    packID: NetskopeV2
+    packName: Netskope v2
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Block URLs, domains and file hashes.
+detaileddescription: |-
+  ### Community Contributed Integration
+   #### Integration Author: randomizerxd
+   No support or maintenance is provided by the author. Customers are encouraged to engage with the user community for questions and guidance at the [Cortex XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).
+  ***
+  ## Netskope (API v2)
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/netskope-api-v2)
+display: Netskope (API v2) (Community Contribution)
+image: data:image/png;base64,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
+name: Netskope (API v2)
+script:
+  commands:
+  - arguments:
+    - description: Name of the URL list.
+      name: list_name
+      required: true
+    - description: URLs to add to the list.
+      isArray: true
+      name: url
+      required: true
+    description: Add URLs to the Netskope URL block list.
+    name: netskopev2-add-url
+    outputs:
+    - contextPath: Netskope.URLList.id
+      description: URL List ID.
+      type: number
+    - contextPath: Netskope.URLList.name
+      description: URL List name.
+      type: string
+    - contextPath: Netskope.URLList.data
+      description: URL List contents.
+    - contextPath: Netskope.URLList.data.urls
+      description: List of URLs in URL List.
+    - contextPath: Netskope.URLList.data.type
+      description: URL List type ('exact' or 'regex').
+      type: string
+    - contextPath: Netskope.URLList.modify_by
+      description: User which last modified URL List.
+      type: string
+    - contextPath: Netskope.URLList.modify_time
+      description: Time which URL List was last modified.
+      type: date
+    - contextPath: Netskope.URLList.modify_type
+      description: URL List modification type ('Created', 'Edited' or 'Deleted').
+      type: string
+    - contextPath: Netskope.URLList.pending
+      description: URL List pending status ('1' if pending, '0' if not).
+      type: number
+  - arguments:
+    - description: Name of the URL list.
+      name: list_name
+      required: true
+    - description: URLs to remove from the list.
+      isArray: true
+      name: url
+      required: true
+    description: Remove URLs from the Netskope URL block list.
+    name: netskopev2-remove-url
+    outputs:
+    - contextPath: Netskope.URLList.id
+      description: URL List ID.
+      type: number
+    - contextPath: Netskope.URLList.name
+      description: URL List name.
+      type: string
+    - contextPath: Netskope.URLList.data
+      description: URL List contents.
+    - contextPath: Netskope.URLList.data.urls
+      description: List of URLs in URL List.
+    - contextPath: Netskope.URLList.data.type
+      description: URL List type ('exact' or 'regex').
+      type: string
+    - contextPath: Netskope.URLList.modify_by
+      description: User which last modified URL List.
+      type: string
+    - contextPath: Netskope.URLList.modify_time
+      description: Time which URL List was last modified.
+      type: date
+    - contextPath: Netskope.URLList.modify_type
+      description: URL List modification type ('Created', 'Edited' or 'Deleted').
+      type: string
+    - contextPath: Netskope.URLList.pending
+      description: URL List pending status ('1' if pending, '0' if not).
+      type: number
+  - arguments: []
+    description: Get all applied and pending URL lists.
+    name: netskopev2-get-lists
+    outputs:
+    - contextPath: Netskope.List.id
+      description: URL List ID.
+      type: number
+    - contextPath: Netskope.List.name
+      description: URL List name.
+      type: string
+    - contextPath: Netskope.List.data
+      description: URL List contents.
+    - contextPath: Netskope.List.data.urls
+      description: List of URLs in URL List.
+    - contextPath: Netskope.List.data.type
+      description: URL List type ('exact' or 'regex').
+      type: string
+    - contextPath: Netskope.List.modify_by
+      description: User which last modified URL List.
+      type: string
+    - contextPath: Netskope.List.modify_time
+      description: Time which URL List was last modified.
+      type: date
+    - contextPath: Netskope.List.modify_type
+      description: URL List modification type ('Created', 'Edited' or 'Deleted').
+      type: string
+    - contextPath: Netskope.List.pending
+      description: URL List pending status ('1' if pending, '0' if not).
+      type: number
+  - arguments:
+    - description: Name of the URL list.
+      name: list_name
+      required: true
+    description: Get URL list by ID.
+    name: netskopev2-get-list
+    outputs:
+    - contextPath: Netskope.List.id
+      description: URL List ID.
+      type: number
+    - contextPath: Netskope.List.name
+      description: URL List name.
+      type: string
+    - contextPath: Netskope.List.data
+      description: URL List contents.
+    - contextPath: Netskope.List.data.urls
+      description: List of URLs in URL List.
+    - contextPath: Netskope.List.data.type
+      description: URL List type ('exact' or 'regex').
+      type: string
+    - contextPath: Netskope.List.modify_by
+      description: User which last modified URL List.
+      type: string
+    - contextPath: Netskope.List.modify_time
+      description: Time which URL List was last modified.
+      type: date
+    - contextPath: Netskope.List.modify_type
+      description: URL List modification type ('Created', 'Edited' or 'Deleted').
+      type: string
+    - contextPath: Netskope.List.pending
+      description: URL List pending status ('1' if pending, '0' if not).
+      type: number
+  dockerimage: demisto/python3:3.10.13.78960
+  runonce: false
+  script: |
+    register_module_line('Netskope (API v2)', 'start', __line__())
+    ### pack version: 1.0.2
+
+
+    import traceback
+    from typing import Any, Dict
+
+    import urllib3
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    ''' CONSTANTS '''
+
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """Client class to interact with the service API"""
+
+        def get_lists(self):
+            return self._http_request(
+                method='GET'
+            )
+
+        def get_list(self, list_id):
+            return self._http_request(
+                method='GET',
+                url_suffix=list_id
+            )
+
+        def patch_list(self, list_id, url_list_object, action):
+            return self._http_request(
+                method='PATCH',
+                url_suffix=f'{list_id}/{action}',
+                json_data=url_list_object
+            )
+
+        def replace_url_list(self, list_id, url_list_object):
+            return self._http_request(
+                method='PUT',
+                url_suffix=list_id,
+                json_data=url_list_object
+            )
+
+        def deploy_lists(self):
+            return self._http_request(
+                method='POST',
+                url_suffix='deploy'
+            )
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def create_url_list_object(urls, type_='exact'):
+        return {
+            'data': {
+                'urls': urls,
+                'type': type_
+            }
+        }
+
+
+    def get_list_id_from_name(client, list_name):
+        # get list ID from lists, filtered by list name
+        lists = client.get_lists()
+        list_id = [listt.get('id') for listt in lists if listt.get('name') == list_name]
+        if len(list_id) == 0:
+            raise Exception(f'A Netskope URL List with the name "{list_name}" does not exist')
+        elif len(list_id) == 1:
+            return str(list_id[0])
+        else:
+            raise Exception(f'Found multiple Netskope URL Lists with the name "{list_name}"')
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity and authentication'
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        :type Client: ``client``
+        :param client: Netskope client to use
+
+        :return: 'ok' if test passed, anything else will fail the test.
+        :rtype: ``str``
+        """
+
+        try:
+            client._http_request(
+                method='GET'
+            )
+        except DemistoException as e:
+            if 'Unauthorized' in str(e):
+                return 'Authorization Error: make sure API Key is correctly set'
+            else:
+                raise e
+        return 'ok'
+
+
+    def get_lists(client: Client, args: Dict[str, Any]) -> CommandResults:
+        r = client.get_lists()
+
+        markdown = tableToMarkdown('Retrieved all applied and pending lists', r)
+
+        return CommandResults(
+            readable_output=markdown,
+            outputs_prefix='Netskope',
+            outputs_key_field='',
+            outputs={
+                'URLList': r
+            }
+        )
+
+
+    def get_list(client: Client, args: Dict[str, Any]) -> CommandResults:
+        list_name = args.get('list_name')
+
+        list_id = get_list_id_from_name(client, list_name)
+
+        r = client.get_list(list_id)
+
+        markdown = tableToMarkdown(f'Retrieved "{list_name}" list', r)
+
+        return CommandResults(
+            readable_output=markdown,
+            outputs_prefix='Netskope',
+            outputs_key_field='',
+            outputs={
+                'URLList': r
+            }
+        )
+
+
+    def add_url(client: Client, args: Dict[str, Any]) -> CommandResults:
+        list_name = args.get('list_name')
+        url = argToList(args.get('url'))
+
+        if len(url) == 0:
+            raise Exception('received an empty list of URLs')
+
+        list_id = get_list_id_from_name(client, list_name)
+
+        # create 'urls' list
+        urls = []
+        for u in url:
+            urls.append(u)
+
+        # append urls to list
+        url_list_object = create_url_list_object(urls)
+        r = client.patch_list(list_id, url_list_object, 'append')
+
+        # apply pending changes
+        client.deploy_lists()
+
+        markdown = tableToMarkdown(f'Added "{url}" to "{r.get("name")}" list', r)
+
+        return CommandResults(
+            readable_output=markdown,
+            outputs_prefix='Netskope',
+            outputs_key_field='',
+            outputs={
+                'URLList': r
+            }
+        )
+
+
+    def remove_url(client: Client, args: Dict[str, Any]) -> CommandResults:
+        list_name = args.get('list_name')
+        url = argToList(args.get('url'))
+
+        if len(url) == 0:
+            raise Exception('received an empty list of URLs')
+
+        list_id = get_list_id_from_name(client, list_name)
+
+        # get urls from list
+        r = client.get_list(list_id)
+        urls = r.get('data').get('urls')
+
+        # remove urls
+        urls_found = []
+        urls_not_found = []
+        for u in url:
+            if u in urls:
+                urls_found.append(u)
+            else:
+                urls_not_found.append(u)
+        for u in urls_found:
+            urls.remove(u)
+
+        # write urls to list
+        url_list_object = create_url_list_object(urls, r.get('data').get('type'))
+        r = client.patch_list(list_id, url_list_object, 'replace')
+
+        # apply pending changes
+        client.deploy_lists()
+
+        message = f'Remove URLs from "{r.get("name")}" list'
+        if urls_found:
+            message += f'\nRemoved: {urls_found}'
+        if urls_not_found:
+            message += f"\nNot found: {urls_not_found}"
+        markdown = tableToMarkdown(message, r)
+
+        return CommandResults(
+            readable_output=markdown,
+            outputs_prefix='Netskope',
+            outputs_key_field='',
+            outputs={
+                'URLList': r
+            }
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+
+        :return:
+        :rtype:
+        """
+
+        api_key = demisto.params().get("api_key_credentials", {}).get("password") or demisto.params().get("api_key")
+        if not api_key:
+            return_error('Please provide a valid API Key')
+        base_url = urljoin(demisto.params()['url'], '/api/v2/policy/urllist/')
+        verify_certificate = not demisto.params().get('insecure', False)
+        proxy = demisto.params().get('proxy', False)
+
+        headers = {
+            'Netskope-Api-Token': api_key
+        }
+
+        commands = {
+            'netskopev2-get-lists': get_lists,
+            'netskopev2-get-list': get_list,
+            'netskopev2-add-url': add_url,
+            'netskopev2-remove-url': remove_url
+        }
+
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+        try:
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                proxy=proxy,
+                headers=headers
+            )
+
+            if command == 'test-module':
+                return_results(test_module(client))
+            if command in commands:
+                return_results(commands[command](client, demisto.args()))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Netskope (API v2)', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
