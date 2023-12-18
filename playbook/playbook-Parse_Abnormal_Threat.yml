@@ -1,0 +1,38 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 4838a1e0-3be6-4fbc-8220-13fbc423c6d7
+inputs: []
+name: Parse Abnormal Threat
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 75ea6c42-cec8-4c8b-8e33-dc2629cac71c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 75ea6c42-cec8-4c8b-8e33-dc2629cac71c
+    timertriggers: []
+    type: start
+version: -1
