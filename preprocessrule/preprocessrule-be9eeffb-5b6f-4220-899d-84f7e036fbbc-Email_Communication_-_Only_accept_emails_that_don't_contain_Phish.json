@@ -1,0 +1,142 @@
+{
+	"action": "drop",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [],
+	"fromServerVersion": "",
+	"id": "be9eeffb-5b6f-4220-899d-84f7e036fbbc",
+	"index": 2,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "Email Communication - Only accept emails that don't contain Phish",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "sourceBrand"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "MicrosoftGraphMail"
+					}
+				},
+				"type": "sourceBrand"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Ares - ServiceNow Ticket"
+					}
+				},
+				"type": "singleSelect"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "emailsubject"
+					}
+				},
+				"operator": "notContainsGeneral",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Phish"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "sourceBrand"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "MicrosoftGraphMail"
+					}
+				},
+				"type": "sourceBrand"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Ares - ServiceNow Ticket"
+					}
+				},
+				"type": "singleSelect"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "emailsubject"
+					}
+				},
+				"operator": "notContainsGeneral",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Phish"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
