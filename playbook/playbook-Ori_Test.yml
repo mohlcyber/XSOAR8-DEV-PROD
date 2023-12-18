@@ -1,0 +1,118 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 80dcdf81-24a2-440d-8ea1-542348d34783
+inputs: []
+name: Ori_Test
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1c534d9e-4b4e-46c8-8c18-6b10c90311f6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1c534d9e-4b4e-46c8-8c18-6b10c90311f6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 130
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1b094f23-ef84-4dc2-8e7f-1a5713023629
+      iscommand: false
+      name: Ori test
+      script: 42c349a0-e278-45d6-87c4-59a8566a3a40
+      type: regular
+      version: -1
+    taskid: 1b094f23-ef84-4dc2-8e7f-1a5713023629
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 340
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e1ae3f38-73a8-401d-8d53-8705794664da
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: e1ae3f38-73a8-401d-8d53-8705794664da
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 600
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 565,
+        "width": 380,
+        "x": 920,
+        "y": 130
+      }
+    }
+  }
