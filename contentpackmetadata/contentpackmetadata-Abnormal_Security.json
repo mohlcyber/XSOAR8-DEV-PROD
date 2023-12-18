@@ -1,0 +1,521 @@
+{
+	"author": "Abnormal Security",
+	"authorImage": "content/packs/AbnormalSecurity/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "Abnormal Security - Incoming Mapper",
+				"name": "Abnormal Security - Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Abnormal Security Impersonated Party",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attack Strategy",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Return Path",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security First Reported",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security To Addresses",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Last Reported",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security First Observed Time",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign From Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Post Remediated",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Judgement Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Portal URL",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Summary Insights",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Attack Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attachment Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Overall Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Reply To Emails",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign From Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security From Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Severity",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Is Read",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Message ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attack Vector",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Case Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Url Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Campaign ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Judgement Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Threat IDs",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Subject",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Customer Visible Time",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Analysis",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Auto Remediated",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Sent Time",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Severity Level",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Overall Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security From Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Sender IP Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Last Reported",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Internet Message ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Recipient Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Message ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attacked Party",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Remediation Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Affected Employee",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Subject",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Sender Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attachment Names",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security CC Emails",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Remediation Timestamp",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Received Time",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign First Reported",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Recipient Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Threat ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Recipient Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Attack Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Case ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Abnormal Security Abuse Campaign Recipient Name",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "AbnormalSecurity",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Get a list of vendors.",
+						"name": "abnormal-security-list-vendors"
+					},
+					{
+						"description": "Manage a Threat identified by Abnormal Security.",
+						"name": "abnormal-security-manage-threat"
+					},
+					{
+						"description": "Get the latest threat intel feed.",
+						"name": "abnormal-security-get-latest-threat-intel-feed"
+					},
+					{
+						"description": "Get employee login information for last 30 days in csv format.",
+						"name": "abnormal-security-get-employee-last-30-days-login-csv"
+					},
+					{
+						"description": "Get the details of a specific vendor.",
+						"name": "abnormal-security-get-vendor-details"
+					},
+					{
+						"description": "Check the status of an action requested on a threat.",
+						"name": "abnormal-security-check-threat-action-status"
+					},
+					{
+						"description": "Manage an Abnormal Case.",
+						"name": "abnormal-security-manage-abnormal-case"
+					},
+					{
+						"description": "Get details of an Abuse Mailbox campaign.",
+						"name": "abnormal-security-get-abuse-mailbox-campaign"
+					},
+					{
+						"description": "Get a list of threats.",
+						"name": "abnormal-security-list-threats"
+					},
+					{
+						"description": "Submit a False Negative Report.",
+						"name": "abnormal-security-submit-false-negative-report"
+					},
+					{
+						"description": "Check the status of an action requested on a case.",
+						"name": "abnormal-security-check-case-action-status"
+					},
+					{
+						"description": "Get the details of a vendor case.",
+						"name": "abnormal-security-get-vendor-case-details"
+					},
+					{
+						"description": "Get the activity for a specific vendor.",
+						"name": "abnormal-security-get-vendor-activity"
+					},
+					{
+						"description": "Download data from Threat Log in .csv format.",
+						"name": "abnormal-security-download-threat-log-csv"
+					},
+					{
+						"description": "Get details of a threat.",
+						"name": "abnormal-security-get-threat"
+					},
+					{
+						"description": "Get a list of Abnormal cases identified by Abnormal Security.",
+						"name": "abnormal-security-list-abnormal-cases"
+					},
+					{
+						"description": "Provides the analysis and timeline details of a case.",
+						"name": "abnormal-security-get-case-analysis-and-timeline"
+					},
+					{
+						"description": "Get a list of unanalyzed abuse mailbox campaigns.",
+						"name": "abnormal-security-list-unanalyzed-abuse-mailbox-campaigns"
+					},
+					{
+						"description": "Get employee information.",
+						"name": "abnormal-security-get-employee-information"
+					},
+					{
+						"description": "Get details of an Abnormal case.",
+						"name": "abnormal-security-get-abnormal-case"
+					},
+					{
+						"description": "Submit an Inquiry to request a report on misjudgement by Abnormal Security.",
+						"name": "abnormal-security-submit-inquiry-to-request-a-report-on-misjudgement"
+					},
+					{
+						"description": "Get a list of campaigns submitted to Abuse Mailbox.",
+						"name": "abnormal-security-list-abuse-mailbox-campaigns"
+					},
+					{
+						"description": "Get employee identity analysis (Genome) data.",
+						"name": "abnormal-security-get-employee-identity-analysis"
+					},
+					{
+						"description": "Get a list of vendor cases.",
+						"name": "abnormal-security-list-vendor-cases"
+					},
+					{
+						"description": "Submit a False Positive Report.",
+						"name": "abnormal-security-submit-false-positive-report"
+					}
+				],
+				"description": "Abnormal Security detects the whole spectrum of email attacks, from vendor email compromise and spear-phishing to unwanted email spam and graymail. To stop these advanced attacks, Abnormal leverages the industry’s most advanced behavioral data science to baseline known good behavior and detects anomalies.",
+				"id": "Abnormal Security",
+				"name": "Abnormal Security (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-07-13T14:50:57Z",
+	"currentVersion": "2.2.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.33.5",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.95",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Abnormal Security detects and protects against the whole spectrum of email attacks",
+	"downloads": 1460,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AbnormalSecurity",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/AbnormalSecurity/AbnormalSecurity_image.png",
+			"name": "Abnormal Security"
+		}
+	],
+	"itemVersion": "2.2.2",
+	"keywords": [
+		"email",
+		"phishing"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "Abnormal Security",
+	"packID": "AbnormalSecurity",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# Abnormal Security \n\nAbnormal Security detects the whole spectrum of email attacks, from vendor email compromise and spear-phishing to unwanted email spam and graymail. To stop these advanced attacks, Abnormal leverages the industry’s most advanced behavioral data science to baseline known good behavior and detects anomalies. The integration of Abnormal Security's SOAR API with Cortex XSOAR empowers security teams to respond to incidents with speed and helps to dramatically reduce mean time to respond.\n\n##### What does this pack do?\nThe integration pack allows:\n• Retrieving email threat campaign data using Cortex XSOAR\n• Retrieving email anomaly cases using Cortex XSOAR\n\nFor more information on Abnormal Security, please visit www.abnormalsecurity.com\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@abnormalsecurity.com",
+		"url": ""
+	},
+	"tags": [
+		"Use Case"
+	],
+	"toServerVersion": "",
+	"updated": "2023-12-17T20:22:41Z",
+	"useCases": [
+		"Phishing"
+	],
+	"version": -1,
+	"versionInfo": "7190203",
+	"videos": []
+}
