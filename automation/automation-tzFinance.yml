@@ -1,0 +1,118 @@
+args:
+- description: get stock quotes
+  name: symbol
+  required: true
+comment: tz finance
+commonfields:
+  id: 0627bb7b-940b-4834-840c-7ba914807867
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: docker.io/demisto/python3:3.10.5.31797
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: tzFinance
+outputs:
+- contextPath: tzFinance.get_stock
+  description: should be a dict
+  type: string
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('tzFinanaceScript', 'start', __line__())
+  """
+  TZ FINANCE
+
+  """
+  from typing import Dict, Any
+  import requests, json
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  def get_stock(symbol: str) -> str:
+      """Returns a JSON with the symbol name and value'
+
+      """
+      APIKEY = 'fcc7c76612691813cdc5100fc49ed82d'
+      symbol = symbol.upper()
+      url = f"https://financialmodelingprep.com/api/v3/quote-short/{symbol}?apikey={APIKEY}"
+      data = requests.get(url)
+      tmp = json.loads(data.text)
+      if len(tmp) == 1:
+          return ( tmp[0])
+      return_error(f'Error getting price for {symbol}')
+
+
+  ''' COMMAND FUNCTION '''
+
+
+  def get_stock_command(args: Dict[str, Any]) -> CommandResults:
+      """helloworld-say-hello command: Returns Hello {somename}
+
+      :type args: ``str``
+      :param args:
+          all command arguments, usually passed from ``demisto.args()``.
+          ``args['name']`` is used as input name
+
+      :return:
+          CommandResults with output context and human readable string.
+
+      :rtype: ``CommandResults``
+      """
+
+      # Check the HelloWorld comments from the HelloWorld Integration
+      # as the command "say_hello_command" is the same.
+
+      symbol = args.get('symbol', None)
+
+      original_result = get_stock(symbol)
+
+      markdown = f'## {original_result}'
+      outputs = {
+          'tzFinance': {
+              'test': original_result,
+              'the_value': float(original_result.get('price'))
+          }
+      }
+
+      return CommandResults(
+          readable_output=markdown,
+          outputs=outputs,
+          outputs_key_field=None
+      )
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          return_results(get_stock_command(demisto.args()))
+      except Exception as ex:
+          return_error(f'Failed to execute tzFinanace. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('tzFinanaceScript', 'end', __line__())
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
