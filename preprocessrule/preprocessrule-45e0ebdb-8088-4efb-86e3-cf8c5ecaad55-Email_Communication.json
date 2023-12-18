@@ -1,0 +1,70 @@
+{
+	"action": "script",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [],
+	"fromServerVersion": "",
+	"id": "45e0ebdb-8088-4efb-86e3-cf8c5ecaad55",
+	"index": 1,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "Email Communication",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Email Communication"
+					}
+				},
+				"type": "singleSelect"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "Email Communication"
+					}
+				},
+				"type": "singleSelect"
+			}
+		]
+	],
+	"scriptID": "PreprocessEmail",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
