@@ -1,0 +1,40 @@
+comment: Close the current investigation as duplicate to other investigation.
+commonfields:
+  id: 974e44fd-6924-44b0-8db3-fb2ad379bd6e
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.29342
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CloseParentInvestigation
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  current_incident_id = demisto.incidents()[0]['CustomFields']['parentticketid']
+
+  parent_inc = demisto.executeCommand("getIncidents", {"query":"externalsystemid:{}".format(current_incident_id)})
+
+  print(parent_inc)
+
+  '''
+  parent_inc_id =
+  demisto.executeCommand("closeInvestigation", {"id":parent_inc_id})
+  res = demisto.executeCommand("linkIncidents", {"incidentId":duplicate_id, "linkedIncidentIDs": current_incident_id, "action":"duplicate"})
+  demisto.results(res)'''
+scripttarget: 0
+subtype: python3
+tags:
+- dedup
+type: python
