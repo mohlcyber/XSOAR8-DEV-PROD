@@ -1,0 +1,150 @@
+commonfields:
+  id: 5eea4816-e459-4ce0-8241-341ebf2a1965
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: tzGetHostInfo
+outputs:
+- contextPath: tzHostInfo
+  type: unknown
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  """Base Script for Cortex XSOAR
+  This is an empty script with some basic structure according
+  to the code conventions.
+  MAKE SURE YOU REVIEW/REPLACE ALL THE COMMENTS MARKED AS "TODO"
+  """
+
+  from typing import Dict, Any
+  from pprint import pformat
+  import traceback
+  import datetime
+  import os, sys, socket
+  import requests
+  import subprocess
+  import json
+
+  ''' STANDALONE FUNCTION '''
+
+  # TODO: REMOVE  following dummy function:
+  def check_os_command():
+      try:
+          p= subprocess.Popen(["ip", "addr"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
+          output, errors = p.communicate()
+          return  ' --- '.join((output.decode('utf-8'), errors.decode('utf-8')))
+      except Exception as e:
+          return repr(e)
+
+
+  def get_ext_ip():
+      res = None
+      try:
+          r = requests.get("http://ifconfig.co", verify=False, headers={'Accept': 'application/json'}, timeout=3)
+          tmp = json.loads(r.text)
+          res = (f"{tmp.get('ip')} - {tmp.get('asn_org')} ")
+      except Exception as e:
+          return repr(e)
+      return res
+
+  def check_ssh_access():
+      res = None
+      try:
+          data = ""
+          s=socket.socket()
+          s.settimeout(2)
+          s.connect(("sdf.org", 22))
+          data = s.recv(1024)
+          res = "OpenSSH_8" in data.decode('utf-8')
+      except Exception as e:
+          res = repr(e)
+      return res
+
+  def check_web_access():
+      web_access = {}
+      res = None
+      URLS = [('http://www.tzotzem.com', False), ('http://www.tzotzem.com', True), ('http://www.neverssl.com', False)]
+      for url, do_verify_ssl in URLS:
+          try:
+              r = requests.get(url, verify=do_verify_ssl, timeout=3)
+              res = F"Status: {r.status_code} Redirects: {len(r.history)}"
+          except Exception as e:
+              res = repr(e)
+          web_access.setdefault(url, {})[do_verify_ssl] = res
+      return web_access
+
+  def get_host_info() -> Dict[str, str]:
+      """Returns a simple python dict with the information provided
+      in the input (dummy).
+      :type dummy: ``str``
+      :param dummy: string to add in the dummy dict that is returned
+      :return: dict as {"dummy": dummy}
+      :rtype: ``str``
+      """
+      #demisto.results(pformat(the_trend))
+
+      return   {"sysargv": ' '.join(sys.argv)
+      ,"env": dict(os.environ)
+      ,"hostname": socket.gethostname()
+      ,"web_access": check_web_access()
+      ,"ssh_access": check_ssh_access()
+      ,"os_command": check_os_command()
+      ,"ext_ip": get_ext_ip()
+      }
+  # TODO: ADD HERE THE FUNCTIONS TO INTERACT WITH YOUR PRODUCT API
+
+
+  ''' COMMAND FUNCTION '''
+
+
+  # TODO: REMOVE the following dummy command function
+  def basescript_dummy_command(args: Dict[str, Any]) -> CommandResults:
+
+
+      # Call the standalone function and get the raw response
+      result = get_host_info()
+
+      return CommandResults(
+          outputs_prefix='tzHostInfo',
+          outputs_key_field=None,
+          outputs=result,
+      )
+  # TODO: ADD additional command functions that translate XSOAR inputs/outputs
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          # TODO: replace the invoked command function with yours
+          return_results(basescript_dummy_command(demisto.args()))
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
