@@ -1,0 +1,57 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Email Communication",
+	"definitionId": "",
+	"description": "Classifies MS Graph Mail email messages.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "708367ef-9ea1-4d97-8764-e4cde2805971",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.0.2",
+	"keyTypeMap": {
+		"Email Communication": "Email Communication",
+		"High": "Email Communication",
+		"Low": "Email Communication",
+		"MicrosoftGraphMail": "Email Communication",
+		"Normal": "Email Communication",
+		"Phishing": "Ares - ServiceNow Ticket"
+	},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": null,
+	"name": "MS Graph Mail - Classifier",
+	"nameRaw": "MS Graph Mail - Classifier",
+	"packID": "",
+	"packName": "Email Communication",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "173a8bc5-663b-4478-89a5-d2ce2ce8a31f",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "Subject",
+			"transformers": [
+				{
+					"args": {
+						"dt": {
+							"isContext": false,
+							"value": {
+								"simple": ".=val \u0026\u0026 val.toLowerCase().indexOf(\"ectest\") \u003e -1 ? \"Email Communication\" : \"Phishing\""
+							}
+						}
+					},
+					"operator": "DT"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
