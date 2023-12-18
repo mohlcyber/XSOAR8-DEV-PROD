@@ -1,0 +1,1187 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 6d61418e-60c2-468d-8f3b-a940aef9dfdd
+inputs: []
+name: Ares_ReportIT_TO_EDIT
+outputs: []
+quiet: true
+sourceplaybookid: 8a85b264-807d-4147-853a-f17eb071d279
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5381aa6c-01ca-4aff-8553-02463e35d1bd
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5381aa6c-01ca-4aff-8553-02463e35d1bd
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 1135,
+          "y": 50
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8424b5cc-26c1-4dfc-8601-5b135f4f1ae1
+      iscommand: false
+      name: Process Email
+      type: regular
+      version: -1
+    taskid: 8424b5cc-26c1-4dfc-8601-5b135f4f1ae1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1135,
+          "y": 545
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 964f4dde-1cd6-430f-84a9-d880ec91dd24
+      iscommand: false
+      name: 'Threat Intelligence '
+      type: regular
+      version: -1
+    taskid: 964f4dde-1cd6-430f-84a9-d880ec91dd24
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1135,
+          "y": 720
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6813ef25-69e9-4e03-8b8a-235afe34500f
+      iscommand: false
+      name: Get User Information
+      type: title
+      version: -1
+    taskid: 6813ef25-69e9-4e03-8b8a-235afe34500f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 895
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 99abf918-96ea-475d-8d35-6e8fd4d853a1
+      iscommand: false
+      name: Query Axonius
+      type: regular
+      version: -1
+    taskid: 99abf918-96ea-475d-8d35-6e8fd4d853a1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 1040
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sfouhdfg
+          operator: isEqualString
+          right:
+            value:
+              simple: dfdh
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: srgsgerg
+          operator: isEqualString
+          right:
+            value:
+              simple: dhdhfd
+      label: "no"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "11"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 49addfa9-c42b-4ccf-80ce-1e1dc3f73921
+      iscommand: false
+      name: 'Is user a VIP? '
+      type: condition
+      version: -1
+    taskid: 49addfa9-c42b-4ccf-80ce-1e1dc3f73921
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 1215
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: Critical
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Optionally increases the incident severity to the new value if
+        it is greater than the existing severity.
+      id: 77974d72-752a-4f24-81ac-a85c52a1ca8b
+      iscommand: false
+      name: Severity to Critical
+      script: IncreaseIncidentSeverity
+      type: regular
+      version: -1
+    taskid: 77974d72-752a-4f24-81ac-a85c52a1ca8b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1135,
+          "y": 1390
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: dfgdfgf
+          operator: isEqualString
+          right:
+            value:
+              simple: fgdfgd
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: dffdg
+          operator: isEqualString
+          right:
+            value:
+              simple: dgrdgfhd
+      label: "no"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "11"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7c34dd30-fd15-4317-8492-641c4d94b289
+      iscommand: false
+      name: 'Malicious? '
+      type: condition
+      version: -1
+    taskid: 7c34dd30-fd15-4317-8492-641c4d94b289
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1350,
+          "y": 1215
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sfgrgs
+          operator: isEqualString
+          right:
+            value:
+              simple: sgsdg
+      label: Malicious
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sdgdgds
+          operator: isEqualString
+          right:
+            value:
+              simple: sdgsgd
+      label: Benign
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Benign:
+      - "31"
+      Malicious:
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5cc69bc2-0fa2-4159-84eb-73b03dac77bf
+      iscommand: false
+      name: Analyst Decision
+      type: condition
+      version: -1
+    taskid: 5cc69bc2-0fa2-4159-84eb-73b03dac77bf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1135,
+          "y": 1565
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+      - "14"
+      - "15"
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: adfd68b8-2ed5-4791-88bf-869ac3c92cf1
+      iscommand: false
+      name: Remediation
+      type: title
+      version: -1
+    taskid: adfd68b8-2ed5-4791-88bf-869ac3c92cf1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 1740
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 463f7272-1478-44b7-82a4-a94c511f1ae8
+      iscommand: false
+      name: Infoblox Remediation
+      type: title
+      version: -1
+    taskid: 463f7272-1478-44b7-82a4-a94c511f1ae8
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1885
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 32294e42-8646-4397-8447-fc5965d527d1
+      iscommand: false
+      name: Netskope Remediation
+      type: title
+      version: -1
+    taskid: 32294e42-8646-4397-8447-fc5965d527d1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1885
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 813dd321-62fd-4869-85db-9e8f05ed6ef0
+      iscommand: false
+      name: Palo Remediation
+      type: title
+      version: -1
+    taskid: 813dd321-62fd-4869-85db-9e8f05ed6ef0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 2045
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 79d23d76-64ae-4f6e-87a1-8440b16f9546
+      iscommand: false
+      name: SNOW - NG-OPS-Network
+      type: regular
+      version: -1
+    taskid: 79d23d76-64ae-4f6e-87a1-8440b16f9546
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2205
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7427d0ac-cafc-4090-8b44-3894c88dff72
+      iscommand: false
+      name: Add URL to EDL
+      type: regular
+      version: -1
+    taskid: 7427d0ac-cafc-4090-8b44-3894c88dff72
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 2380
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cbe89283-cc37-4749-8564-38b561dec6d6
+      iscommand: false
+      name: Choose URL to add to EDL
+      type: regular
+      version: -1
+    taskid: cbe89283-cc37-4749-8564-38b561dec6d6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 2205
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 545f2741-47a7-4712-86fd-438977d22c5b
+      iscommand: false
+      name: Choose URL and/or Domains to block
+      type: regular
+      version: -1
+    taskid: 545f2741-47a7-4712-86fd-438977d22c5b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2030
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 160906ee-3a24-45cf-812c-2a26a44179ac
+      iscommand: false
+      name: Choose URL to block
+      type: regular
+      version: -1
+    taskid: 160906ee-3a24-45cf-812c-2a26a44179ac
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2030
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b7e28a12-4f7d-45a2-8c99-9ad2a36f16c2
+      iscommand: false
+      name: SNOW - NG-OPS-Network
+      type: regular
+      version: -1
+    taskid: b7e28a12-4f7d-45a2-8c99-9ad2a36f16c2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2205
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d4f71fc5-16b0-4079-81dd-779979c0790e
+      iscommand: false
+      name: Monitor SNOW Ticket for Closure
+      type: regular
+      version: -1
+    taskid: d4f71fc5-16b0-4079-81dd-779979c0790e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2380
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e6265204-b4d2-412e-82b7-f663dbae98bd
+      iscommand: false
+      name: Monitor SNOW Ticket for Closure
+      type: regular
+      version: -1
+    taskid: e6265204-b4d2-412e-82b7-f663dbae98bd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2380
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4aa4704f-d59f-49e5-8a3a-89aa0b0203e9
+      iscommand: false
+      name: Active Directory Remediation
+      type: title
+      version: -1
+    taskid: 4aa4704f-d59f-49e5-8a3a-89aa0b0203e9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 2045
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 77417d9c-8cd7-4a91-8120-09efbab2896e
+      iscommand: false
+      name: Choose user password to reset
+      type: regular
+      version: -1
+    taskid: 77417d9c-8cd7-4a91-8120-09efbab2896e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 2205
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 14f6e482-f080-40e4-854d-528534183f3a
+      iscommand: false
+      name: Reset Password
+      type: regular
+      version: -1
+    taskid: 14f6e482-f080-40e4-854d-528534183f3a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 2380
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 284ee5f0-f374-4ddb-8cd8-f18ed770b676
+      iscommand: false
+      name: Remediation End
+      type: title
+      version: -1
+    taskid: 284ee5f0-f374-4ddb-8cd8-f18ed770b676
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 797.5,
+          "y": 2570
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3769a6f4-6de3-4699-83fa-83b7d5437629
+      iscommand: false
+      name: End
+      type: title
+      version: -1
+    taskid: 3769a6f4-6de3-4699-83fa-83b7d5437629
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2750,
+          "y": 2920
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9a16e6d5-019c-4a44-858e-367921d24291
+      iscommand: false
+      name: Send Email to user
+      type: regular
+      version: -1
+    taskid: 9a16e6d5-019c-4a44-858e-367921d24291
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1882.5,
+          "y": 2205
+        }
+      }
+  "32":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: dfsgsd
+          operator: isEqualString
+          right:
+            value:
+              simple: sgdsdgs
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sdgdsgd
+          operator: isEqualString
+          right:
+            value:
+              simple: sgsd
+      label: "no"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sgsdg
+          operator: isEqualString
+          right:
+            value:
+              simple: sdgsdg
+      label: not sure
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "30"
+      not sure:
+      - "34"
+      "yes":
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 84f6a3d7-0856-45b8-892f-96c7ffba8cc3
+      iscommand: false
+      name: Expecting Email?
+      type: condition
+      version: -1
+    taskid: 84f6a3d7-0856-45b8-892f-96c7ffba8cc3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1882.5,
+          "y": 2380
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b7d874eb-102c-4ec4-8b1d-d45833927ec2
+      iscommand: false
+      name: Manual Release of email from Abnormal
+      type: regular
+      version: -1
+    taskid: b7d874eb-102c-4ec4-8b1d-d45833927ec2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2210,
+          "y": 2555
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9e57055a-1cef-4f22-8fd3-5184da7e92a7
+      iscommand: false
+      name: Manual Analyst User Interaction
+      type: regular
+      version: -1
+    taskid: 9e57055a-1cef-4f22-8fd3-5184da7e92a7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1780,
+          "y": 2555
+        }
+      }
+  "35":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sdgdsg
+          operator: isEqualString
+          right:
+            value:
+              simple: sgdsdg
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: sdgds
+          operator: isEqualString
+          right:
+            value:
+              simple: sgddsg
+      label: "no"
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "3"
+      "yes":
+      - "36"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7e4bc087-108c-4eba-8c20-3d22c147d34f
+      iscommand: false
+      name: Simulation?
+      type: condition
+      version: -1
+    taskid: 7e4bc087-108c-4eba-8c20-3d22c147d34f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1790,
+          "y": 260
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 08a97b42-4535-4a73-80fe-afdea05b83ee
+      iscommand: false
+      name: Check for VIP
+      type: regular
+      version: -1
+    taskid: 08a97b42-4535-4a73-80fe-afdea05b83ee
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2110,
+          "y": 570
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email using Microsoft Graph.
+      id: 72442174-f66e-4245-8971-cf814f34f99a
+      iscommand: false
+      name: Send email response to user
+      type: regular
+      version: -1
+    taskid: 72442174-f66e-4245-8971-cf814f34f99a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1910,
+          "y": 865
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e38c7387-915b-47eb-87fb-edbab43a3fb7
+      iscommand: false
+      name: If VIP no auto email manual task
+      type: regular
+      version: -1
+    taskid: e38c7387-915b-47eb-87fb-edbab43a3fb7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2400,
+          "y": 865
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2935,
+        "width": 3080,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
