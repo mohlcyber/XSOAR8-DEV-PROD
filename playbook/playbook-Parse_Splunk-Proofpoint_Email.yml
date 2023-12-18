@@ -1,0 +1,295 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 901890ed-c311-4bca-8847-86ae2c1ff475
+inputs:
+- description: ""
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Parse Splunk-Proofpoint Email
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6db4534e-be5a-4a3d-8967-c87581395afd
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 6db4534e-be5a-4a3d-8967-c87581395afd
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      emailcc:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: ccAddresses
+            operator: getField
+      emailfrom:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: sender
+            operator: getField
+      emailsenderip:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: senderIP
+            operator: getField
+      emailsubject:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: subject
+            operator: getField
+      emailto:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: recipient
+            operator: getField
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 359b1388-8d2e-486b-8b53-fae7e1e9aab3
+      iscommand: true
+      name: Parse and set Email details
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 359b1388-8d2e-486b-8b53-fae7e1e9aab3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      reporteremailaddress:
+        complex:
+          root: inputs.Email
+          transformers:
+          - args:
+              field:
+                value:
+                  simple: recipient
+            operator: getField
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: cceed5f5-ee71-4937-8102-e73b2069f26b
+      iscommand: true
+      name: Parse reporter address
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: cceed5f5-ee71-4937-8102-e73b2069f26b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      text:
+        complex:
+          accessor: emailsenderip
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.extract.indicators
+      id: 818f872c-fd2e-4776-8d51-61b850844531
+      iscommand: true
+      name: Extract sender IP
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: 818f872c-fd2e-4776-8d51-61b850844531
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: emailsenderip
+                root: incident
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: emailsenderip
+                root: incident
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3e891c9b-7a25-417f-8651-a2e8c0b09bfb
+      iscommand: false
+      name: Is there an email sender IP?
+      type: condition
+      version: -1
+    taskid: 3e891c9b-7a25-417f-8651-a2e8c0b09bfb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 530
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cbe9c14f-b736-4cd7-8012-4d57ccdffd77
+      iscommand: false
+      name: End Task
+      type: title
+      version: -1
+    taskid: cbe9c14f-b736-4cd7-8012-4d57ccdffd77
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -470,
+          "y": 735
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 765,
+        "width": 900,
+        "x": -470,
+        "y": 50
+      }
+    }
+  }
