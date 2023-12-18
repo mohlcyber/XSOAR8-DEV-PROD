@@ -1,0 +1,112 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets the feed indicators.",
+						"name": "spamhaus-get-indicators"
+					}
+				],
+				"description": "Use the Spamhaus feed integration to fetch indicators from the feed.",
+				"id": "SpamhausFeed",
+				"name": "Spamhaus Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:28:15Z",
+	"currentVersion": "1.1.23",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.33.1",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "The Spamhaus DROP (Don't Route Or Peer) lists are advisory \"drop all traffic\" lists, consisting of netblocks that are \"hijacked\" or leased by professional spam or cyber-crime operations (used for dissemination of malware, trojan downloaders, botnet controllers). The DROP lists are a tiny subset of the SBL, designed for use by firewalls and routing equipment to filter out the malicious traffic from these netblocks.",
+	"downloads": 4038,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedSpamhaus",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedSpamhaus/SpamhausFeed_image.png",
+			"name": "Spamhaus Feed"
+		}
+	],
+	"itemVersion": "1.1.23",
+	"keywords": [
+		"feed"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "Spamhaus Feed",
+	"packID": "FeedSpamhaus",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Plug \u0026 Fetch",
+		"Free Feed",
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2023-12-10T20:23:03Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "7122577",
+	"videos": []
+}
