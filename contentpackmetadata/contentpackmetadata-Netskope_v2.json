@@ -1,0 +1,115 @@
+{
+	"author": "randomizerxd",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Cloud Services"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Add URLs to the Netskope URL block list.",
+						"name": "netskopev2-add-url"
+					},
+					{
+						"description": "Remove URLs from the Netskope URL block list.",
+						"name": "netskopev2-remove-url"
+					},
+					{
+						"description": "Get all applied and pending URL lists.",
+						"name": "netskopev2-get-lists"
+					},
+					{
+						"description": "Get URL list by ID.",
+						"name": "netskopev2-get-list"
+					}
+				],
+				"description": "Block URLs, domains and file hashes.",
+				"id": "Netskope (API v2)",
+				"name": "Netskope (API v2) (Community Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2022-01-12T22:17:39Z",
+	"currentVersion": "1.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.40",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Block URLs, domains and file hashes.",
+	"downloads": 169,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldFree"
+	],
+	"id": "NetskopeV2",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/NetskopeV2/Netskope%28APIv2%29_image.png",
+			"name": "Netskope (API v2)"
+		}
+	],
+	"itemVersion": "1.0.2",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Netskope v2",
+	"packID": "NetskopeV2",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": ""
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-10-29T19:25:26Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6738192",
+	"videos": []
+}
