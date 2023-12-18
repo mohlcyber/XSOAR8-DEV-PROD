@@ -1,0 +1,187 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get IP info",
+						"name": "infoblox-get-ip"
+					},
+					{
+						"description": "Searches IP related objects by a given IP.",
+						"name": "infoblox-search-related-objects-by-ip"
+					},
+					{
+						"description": "Lists all response policy rules that belong to the given response policy zone.",
+						"name": "infoblox-list-response-policy-zone-rules"
+					},
+					{
+						"description": "List all response policy zones.",
+						"name": "infoblox-list-response-policy-zones"
+					},
+					{
+						"description": "Creates a response policy zone.",
+						"name": "infoblox-create-response-policy-zone"
+					},
+					{
+						"description": "Creates a response policy rule.",
+						"name": "infoblox-create-rpz-rule"
+					},
+					{
+						"description": "Creates a substitute record rule.",
+						"name": "infoblox-create-a-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute rule for an AAAA record.",
+						"name": "infoblox-create-aaaa-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute rule for the MX record.",
+						"name": "infoblox-create-mx-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute rule for a NAPTR record.",
+						"name": "infoblox-create-naptr-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute rule of the PTR record.",
+						"name": "infoblox-create-ptr-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute rule of a SRV record.",
+						"name": "infoblox-create-srv-substitute-record-rule"
+					},
+					{
+						"description": "Create a substitute rule for a txt record.",
+						"name": "infoblox-create-txt-substitute-record-rule"
+					},
+					{
+						"description": "Create a substitute rule for an IPv4 rule.",
+						"name": "infoblox-create-ipv4-substitute-record-rule"
+					},
+					{
+						"description": "Creates a substitute of the IPv6 record rule.",
+						"name": "infoblox-create-ipv6-substitute-record-rule"
+					},
+					{
+						"description": "Disables a rule by its reference ID (reference ID could be extracted by running the searah rules command).",
+						"name": "infoblox-enable-rule"
+					},
+					{
+						"description": "Disable a rule by its reference ID (reference ID could be extracted by running the 'infoblox-search-rule' command).",
+						"name": "infoblox-disable-rule"
+					},
+					{
+						"description": "Returns the object fields names which can be used in the search rules command.",
+						"name": "infoblox-get-object-fields"
+					},
+					{
+						"description": "Searches a specific rule by its name.",
+						"name": "infoblox-search-rule"
+					},
+					{
+						"description": "Deletes a rule.",
+						"name": "infoblox-delete-rpz-rule"
+					},
+					{
+						"description": "Deletes a given response policy zone.",
+						"name": "infoblox-delete-response-policy-zone"
+					}
+				],
+				"description": "Infoblox enables you to receive metadata about IPs in your network and manages the DNS Firewall by configuring RPZs. It defines RPZ rules to block DNS resolution for malicious or unauthorized hostnames, or redirect clients to a walled garden by substituting responses.",
+				"id": "Infoblox",
+				"name": "Infoblox"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-12-13T11:40:25Z",
+	"currentVersion": "1.0.18",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.43",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Infoblox enables you to receive metadata about IPs in your network and manages the DNS Firewall by configuring RPZs. It defines RPZ rules to block DNS resolution for malicious or unauthorized hostnames, or redirect clients to a walled garden by substituting responses.",
+	"downloads": 2604,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Infoblox",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Infoblox/Infoblox_image.png",
+			"name": "Infoblox"
+		}
+	],
+	"itemVersion": "1.0.18",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Infoblox NIOS",
+	"packID": "Infoblox",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This pack includes XSIAM content.\n\n## Collect Events from Vendor\n\n* Pay attention: Timestamp Parsing is only available in **%Y %b %e %H:%M:%S** format, in UTC (00:00) time zone.\n\n### Broker VM\nYou will need to use the information described [here](https://docs-cortex.paloaltonetworks.com/r/Cortex-XDR/Cortex-XDR-Pro-Administrator-Guide/Configure-the-Broker-VM).\\\nYou can configure the specific vendor and product for this instance.\n1. Navigate to **Settings** -\u003e **Configuration** -\u003e **Data Broker** -\u003e **Broker VMs**. \n2. Right-click, and select **Syslog Collector** -\u003e **Configure**.\n3. When configuring the Syslog Collector, set:\n   - vendor as infoblox\n   - product as infoblox\n\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-11-10T10:53:45Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6850782",
+	"videos": []
+}
