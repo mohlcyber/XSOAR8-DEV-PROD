@@ -1,0 +1,369 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 165ecec7-222b-4506-860e-ac286b55e6cf
+inputs: []
+name: Monitor SNow Child Ticket
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dedb89cc-6cb5-4e58-8c2e-0fe744633f83
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: dedb89cc-6cb5-4e58-8c2e-0fe744633f83
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      InstanceName:
+        simple: Ares ServiceNow v2_dev_child_incidents
+      Interval:
+        simple: "2"
+      TicketNumber:
+        complex:
+          accessor: number
+          root: incident.labels
+      Timeout:
+        simple: "120"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use ServiceNow Incident State Polling as a sub-playbook when required to pause the execution of a master playbook until the ServiceNow ticket state is either resolved or closed.
+        This playbook implements polling by continuously running the servicenow-get-ticket command until the state is either resolved or closed.
+      id: 5d307416-947c-4a82-88d5-89464f67efd8
+      iscommand: false
+      name: ServiceNow Ticket State Polling
+      playbookId: ServiceNow Ticket State Polling
+      type: playbook
+      version: -1
+    taskid: 5d307416-947c-4a82-88d5-89464f67efd8
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 90,
+          "y": 880
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: True Positive - Resolved
+      id:
+        complex:
+          accessor: linkedIncidents
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 80847093-7f06-4fc3-8103-54e51a29abd4
+      iscommand: true
+      name: Close parent incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 80847093-7f06-4fc3-8103-54e51a29abd4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 90,
+          "y": 1055
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b4d4f87f-250b-4099-8ad7-7b02c207dd15
+      iscommand: false
+      name: Remediation
+      type: title
+      version: -1
+    taskid: b4d4f87f-250b-4099-8ad7-7b02c207dd15
+    timertriggers:
+    - action: start
+      fieldname: containmentsla
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      similarIncidentKeys:
+        simple: externalsystemid
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Finds similar incidents by common incident keys, labels, custom fields or context keys.
+        It's highly recommended to use incident keys if possible (e.g., "type" for the same incident type).
+        For best performance, it's recommended to avoid using context keys if possible (for example, if the value also appears in a label key, use label).
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 40a6db48-7372-4a5f-80ff-9a48eb46767c
+      iscommand: false
+      name: Find similar incidents
+      script: FindSimilarIncidents
+      type: regular
+      version: -1
+    taskid: 40a6db48-7372-4a5f-80ff-9a48eb46767c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 310
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: isSimilarIncidentFound
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "1"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9a9ea30c-7019-41e1-8a40-933f0b2fd94c
+      iscommand: false
+      name: Duplicate incidents found?
+      type: condition
+      version: -1
+    taskid: 9a9ea30c-7019-41e1-8a40-933f0b2fd94c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 490
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      duplicateId:
+        complex:
+          accessor: rawId
+          root: similarIncident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Close the current investigation as duplicate to other investigation.
+      id: 7f91c2c8-36bc-46bb-8a85-bab8431108f9
+      iscommand: false
+      name: Mark as duplicate and close
+      script: CloseInvestigationAsDuplicate
+      type: regular
+      version: -1
+    taskid: 7f91c2c8-36bc-46bb-8a85-bab8431108f9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 640
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: True Positive - Resolved
+      id:
+        complex:
+          accessor: id
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: f72e2b15-3116-4235-85ef-872995fb3572
+      iscommand: true
+      name: Close Investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: f72e2b15-3116-4235-85ef-872995fb3572
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 90,
+          "y": 1230
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 44f93514-e286-4501-848f-0856b67cd2b3
+      iscommand: false
+      name: End Task
+      type: title
+      version: -1
+    taskid: 44f93514-e286-4501-848f-0856b67cd2b3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 90,
+          "y": 1390
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1405,
+        "width": 830,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
