@@ -1,0 +1,118 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "azure-get-indicators"
+					}
+				],
+				"description": "Azure.CloudIPs Feed Integration.",
+				"id": "AzureFeed",
+				"name": "Azure Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook handles the tagging of Azure indicators. Specify the tag to apply to these indicators in the playbook inputs. An example tag will be approved_white. If no inputs are specified, the indicators will be tagged for manual review. The user can specify whether a manual review incident is required.",
+				"name": "TIM - Process Azure indicators"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:27:54Z",
+	"currentVersion": "1.0.26",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Indicators feed from Azure",
+	"downloads": 4265,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedAzure",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedAzure/AzureFeed_image.png",
+			"name": "Azure Feed"
+		}
+	],
+	"itemVersion": "1.0.26",
+	"keywords": [
+		"Azure",
+		"Feed"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "Azure Feed",
+	"packID": "FeedAzure",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Allow List",
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2023-09-14T09:56:10Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
