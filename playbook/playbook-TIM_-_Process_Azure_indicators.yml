@@ -1,0 +1,471 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.0.26
+    packID: FeedAzure
+    packName: Azure Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook handles the tagging of Azure indicators. Specify the tag
+  to apply to these indicators in the playbook inputs. An example tag will be approved_white.
+  If no inputs are specified, the indicators will be tagged for manual review. The
+  user can specify whether a manual review incident is required.
+id: TIM - Process Azure indicators
+inputs:
+- description: 'Use this input to define which tag to apply to Azure indicators. An
+    example tag can be whitelist_review. If no tags are specified in the input, the
+    tag whitelist_review will be used. '
+  key: AzureIndicatorTagName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: sourceBrands:AzureFeed
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: false
+  required: false
+  value: {}
+- description: This input determines if processed indicators that have the whitelist_review
+    tag are reviewed in a new incident. To create an incident, enter any value other
+    than 'No'.
+  key: OpenIncidentToReviewIndicatorsManually
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "No"
+name: TIM - Process Azure indicators
+outputs: []
+quiet: true
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 44e624ee-accf-4938-8f08-d76451581986
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 44e624ee-accf-4938-8f08-d76451581986
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -260
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 419b007e-2a1f-44d5-8b77-b6271e554f4e
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 419b007e-2a1f-44d5-8b77-b6271e554f4e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": 960
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.AzureIndicatorTagName
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.AzureIndicatorTagName
+          operator: isNotEqualString
+          right:
+            value:
+              simple: whitelist_review
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "29"
+      "yes":
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 92e7d5e2-3945-47fd-8c25-f3c0c8ba7016
+      iscommand: false
+      name: Is there a AzureIndicatorTagName input?
+      type: condition
+      version: -1
+    taskid: 92e7d5e2-3945-47fd-8c25-f3c0c8ba7016
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 100
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: ${inputs.AzureIndicatorTagName}
+      indicatorsValues:
+        complex:
+          accessor: value}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.sourceBrands
+              operator: isEqualString
+              right:
+                value:
+                  simple: AzureFeed
+          root: ${playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the tag provided in the input to the indicator.
+      id: 0d364681-1c79-4711-867d-a16d074d4f06
+      iscommand: true
+      name: Tag Azure indicators with tag from inputs
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 0d364681-1c79-4711-867d-a16d074d4f06
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 770
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.sourceBrands
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: AzureFeed
+                root: playbookQuery
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a2c6b6c9-2a94-46e2-80bd-09f28823f1b2
+      iscommand: false
+      name: Are there filtered results?
+      type: condition
+      version: -1
+    taskid: a2c6b6c9-2a94-46e2-80bd-09f28823f1b2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -80
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: whitelist_review
+      indicatorsValues:
+        complex:
+          accessor: value}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.sourceBrands
+              operator: isEqualString
+              right:
+                value:
+                  simple: AzureFeed
+          root: ${playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the whitelist_review tag to the indicator.
+      id: 1292e6d7-2cc0-440b-81f7-fb4e08d35f0c
+      iscommand: true
+      name: Tag Azure indicators with tag whitelist review
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 1292e6d7-2cc0-440b-81f7-fb4e08d35f0c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 440
+        }
+      }
+  "26":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.OpenIncidentToReviewIndicatorsManually
+          operator: isNotEqualString
+          right:
+            value:
+              simple: "No"
+      label: "yes"
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4e0a4d74-1cf0-48b3-831f-a75573f85d45
+      iscommand: false
+      name: Open manual review incident?
+      type: condition
+      version: -1
+    taskid: 4e0a4d74-1cf0-48b3-831f-a75573f85d45
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 595
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      name:
+        simple: Review Indicators Manually For Whitelisting
+      type:
+        simple: Review Indicators Manually For Whitelisting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Open new manual review incident
+      id: 9368bd73-e75d-4cc3-8240-acf2b6057b50
+      iscommand: true
+      name: Create Process Indicators Manually incident
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: 9368bd73-e75d-4cc3-8240-acf2b6057b50
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -610,
+          "y": 770
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 19ee32ed-d9a1-4c46-8a44-75af0fd656b7
+      iscommand: false
+      name: Auto Approve
+      type: title
+      version: -1
+    taskid: 19ee32ed-d9a1-4c46-8a44-75af0fd656b7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 480
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9a9e74b1-d4e7-430e-8345-3ee4952b8b7a
+      iscommand: false
+      name: Manually review
+      type: title
+      version: -1
+    taskid: 9a9e74b1-d4e7-430e-8345-3ee4952b8b7a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 300
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1285,
+        "width": 1500,
+        "x": -610,
+        "y": -260
+      }
+    }
+  }
