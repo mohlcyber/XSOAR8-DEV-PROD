@@ -1,0 +1,122 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Cloud Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Run this command to complete the authorization process. Should be used after running the msgraph-auth-start command.",
+						"name": "msgraph-api-auth-complete"
+					},
+					{
+						"description": "Run a Microsoft Graph API query.",
+						"name": "msgraph-api-request"
+					},
+					{
+						"description": "Run this command if for some reason you need to rerun the authentication process.",
+						"name": "msgraph-api-auth-reset"
+					},
+					{
+						"description": "Tests connectivity to Microsoft when using Cortex XSOAR Azure app.",
+						"name": "msgraph-api-test"
+					},
+					{
+						"description": "Run this command to start the authorization process and follow the instructions in the command results.",
+						"name": "msgraph-api-auth-start"
+					}
+				],
+				"description": "Use the Microsoft Graph API integration to interact with Microsoft APIs that do not have dedicated integrations in Cortex XSOAR, for example, Mail Single-User, etc.",
+				"id": "Microsoft Graph API",
+				"name": "Microsoft Graph API"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-23T06:36:59Z",
+	"currentVersion": "1.1.37",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.52",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Microsoft Graph API integration to interact with Microsoft APIs that do not have dedicated integrations in Cortex XSOAR, for example, Mail Single-User, etc.",
+	"downloads": 7217,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "MicrosoftGraphAPI",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/MicrosoftGraphAPI/MicrosoftGraphAPI_image.png",
+			"name": "Microsoft Graph API"
+		}
+	],
+	"itemVersion": "1.1.37",
+	"keywords": [],
+	"legacy": true,
+	"modules": [],
+	"name": "Microsoft Graph API",
+	"packID": "MicrosoftGraphAPI",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-12-04T20:23:12Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "7066068",
+	"videos": []
+}
