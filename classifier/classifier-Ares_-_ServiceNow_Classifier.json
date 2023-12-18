@@ -1,0 +1,38 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "ServiceNow Ticket",
+	"definitionId": "",
+	"description": "Classifies ServiceNow tickets.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "a3afdaa8-5203-4666-8b15-a218b5ba4ca9",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.3.25",
+	"keyTypeMap": {
+		"incident": "ServiceNow Ticket",
+		"sn_si_incident": "ServiceNow SIR Incident",
+		"u_security_incident": "Ares - ServiceNow Ticket"
+	},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": null,
+	"name": "Ares - ServiceNow Classifier",
+	"nameRaw": "Ares - ServiceNow Classifier",
+	"packID": "",
+	"packName": "ServiceNow",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "ServiceNow",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "sys_class_name"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
