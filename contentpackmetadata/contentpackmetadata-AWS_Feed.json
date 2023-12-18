@@ -1,0 +1,139 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Classifies AWS IOCs.",
+				"id": "AWS Feed Classifier",
+				"name": "AWS Feed - Classifier"
+			},
+			{
+				"description": "Maps incoming AWS indicator fields.",
+				"id": "AWS Feed Mapper",
+				"name": "AWS Feed - Incoming Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Fetches indicators from the feed.",
+						"name": "aws-get-indicators"
+					}
+				],
+				"description": "Use the AWS feed integration to fetch indicators from the feed.",
+				"id": "AWS Feed",
+				"name": "AWS Feed"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook handles the tagging of AWS indicators. Specify the tag to apply to these indicators in the playbook inputs. An example tag will be approved_white. If no inputs are specified, the indicators will be tagged for manual review. The user can specify whether a manual review incident is required.",
+				"name": "TIM - Process AWS indicators"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-07-26T10:30:48Z",
+	"currentVersion": "1.1.45",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.33.1",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.95",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Indicators feed from AWS",
+	"downloads": 5381,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FeedAWS",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedAWS/AWSFeed_image.png",
+			"name": "AWS Feed"
+		}
+	],
+	"itemVersion": "1.1.45",
+	"keywords": [
+		"AWS",
+		"Feed"
+	],
+	"legacy": true,
+	"modules": [],
+	"name": "AWS Feed",
+	"packID": "FeedAWS",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"TIM",
+		"Allow List",
+		"Threat Intelligence Management",
+		"Getting Started"
+	],
+	"toServerVersion": "",
+	"updated": "2023-12-10T20:22:48Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "7122577",
+	"videos": []
+}
