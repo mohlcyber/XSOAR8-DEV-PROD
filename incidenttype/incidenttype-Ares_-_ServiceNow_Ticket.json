@@ -1,0 +1,41 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#0f4b66",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "",
+	"hours": 8,
+	"hoursR": 4,
+	"id": "Ares - ServiceNow Ticket",
+	"itemVersion": "",
+	"layout": "41f153cf-615f-402f-8622-f00177040c84",
+	"locked": false,
+	"name": "Ares - ServiceNow Ticket",
+	"onChangeRepAlg": 1,
+	"packID": "",
+	"packName": "",
+	"playbookId": "c278f12e-6063-4ec1-8615-89bc2ff7bdab",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 1,
+	"sla": 8,
+	"slaReminder": 4,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
