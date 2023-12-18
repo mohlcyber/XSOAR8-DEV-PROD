@@ -1,0 +1,124 @@
+commonfields:
+  id: fae813ca-e2f7-4dec-8796-0c21e5d0ba97
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: tzFinanceTrend
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  """Base Script for Cortex XSOAR
+  This is an empty script with some basic structure according
+  to the code conventions.
+  MAKE SURE YOU REVIEW/REPLACE ALL THE COMMENTS MARKED AS "TODO"
+  """
+
+  from typing import Dict, Any
+  from pprint import pformat
+  import traceback
+  import datetime
+
+
+  ''' STANDALONE FUNCTION '''
+  SYMBOL_UP = "↑"
+  SYMBOL_DN = "↓"
+  SYMBOL_EQ = "━"
+
+  # TODO: REMOVE the following dummy function:
+  def get_trent() -> Dict[str, str]:
+      """Returns a simple python dict with the information provided
+      in the input (dummy).
+      :type dummy: ``str``
+      :param dummy: string to add in the dummy dict that is returned
+      :return: dict as {"dummy": dummy}
+      :rtype: ``str``
+      """
+      yesterday = str((datetime.datetime.now() - datetime.timedelta(days=1)).date())
+
+
+      res = demisto.executeCommand("SearchIncidentsV2", {"type":"tzFinanceIncident", "fromdate": yesterday, "page":0 , "sort":"created.desc", "size": 10})
+      the_trend = []
+      last_price = None
+      for idx, incident in enumerate(res[0]["Contents"][0]["Contents"]["data"]):
+          if idx == 0:
+              continue
+      #demisto.results(pformat(incident))
+          if not incident.get('CustomFields', {}).get('tzstockprice'):
+              continue
+          the_price = float(incident.get('CustomFields', {}).get('tzstockprice'))
+          if len(res[0]["Contents"][0]["Contents"]["data"]) > idx+1:
+              prev_price = res[0]["Contents"][0]["Contents"]["data"][idx+1].get('CustomFields', {}).get('tzstockprice')
+          if prev_price is not None:
+              if prev_price > the_price:
+                  sym = SYMBOL_DN
+              elif prev_price < the_price:
+                  sym = SYMBOL_UP
+              else:
+                  sym = SYMBOL_EQ
+          else:
+              sym = "???"
+
+          the_trend.append(f"{incident.get('created').rpartition('.')[0]}:  {the_price or 'ERR'} ({sym})")
+          if last_price is None:
+              last_price = the_price
+
+      #demisto.results(pformat(the_trend))
+
+      return {"last_price": last_price or 0, "trend": '\r\n'.join(the_trend)}
+  # TODO: ADD HERE THE FUNCTIONS TO INTERACT WITH YOUR PRODUCT API
+
+
+  ''' COMMAND FUNCTION '''
+
+
+  # TODO: REMOVE the following dummy command function
+  def basescript_dummy_command(args: Dict[str, Any]) -> CommandResults:
+
+
+      # Call the standalone function and get the raw response
+      result = get_trent()
+
+      return CommandResults(
+          outputs_prefix='tzFinanceTrend',
+          outputs_key_field=None,
+          outputs=result,
+      )
+  # TODO: ADD additional command functions that translate XSOAR inputs/outputs
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          # TODO: replace the invoked command function with yours
+          return_results(basescript_dummy_command(demisto.args()))
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
