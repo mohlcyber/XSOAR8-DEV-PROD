@@ -1,0 +1,27 @@
+commonfields:
+  id: dd8ff143-49e2-4700-8265-aa80e4fd5d11
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.9.42476
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: create_entries
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: '[print(i) for i in range(2001)]”'
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
